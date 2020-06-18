@@ -7,7 +7,7 @@
 import backend.Client;
 import java.util.Scanner;
 
-class User {
+class Main {
     public static void main(String[] args) {
         Client client = new Client("127.0.0.1", 8080);
         Scanner in = new Scanner(System.in);

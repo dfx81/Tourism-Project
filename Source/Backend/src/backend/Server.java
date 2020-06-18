@@ -3,7 +3,7 @@
  * Author: Danial Fitri (dfx)
  * Usage : Simply import from package backend
  * A class used to handle multiple connections
- * and create new ServerInstances to handle
+ * and create new Worker to handle
  * them in a separate thread.
  * Provide the port the server will listen to.
  * Then the Server will begin listening for
@@ -40,7 +40,7 @@ public class Server implements Runnable {
         try {
             server = new ServerSocket(port);
         } catch (Exception err) {
-            //err.printStackTrace();
+            err.printStackTrace();
         }
         
         new Thread(this).start();
@@ -74,7 +74,7 @@ public class Server implements Runnable {
             System.out.println("Shutting down server...");
             server.close();
         } catch (Exception err) {
-            
+            // Todo: Handle exceptions properly
         }
         
         in.close();
@@ -87,13 +87,15 @@ public class Server implements Runnable {
         // while the server is running.
         // If new connection was found, create
         // a new Socket and pass it as args
-        // for new ServerInstance object.
+        // for new Worker object.
         while (running) {
             try {
                 socket = server.accept();
-                new ServerInstance(socket);
+                new Worker(socket);
             } catch (Exception err) {
-                //err.printStackTrace();
+                if (running) {
+                    err.printStackTrace();
+                }
             }
         }
     }

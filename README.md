@@ -2,27 +2,27 @@
 Project for STIA1123A (Programming 2) course
 
 ## Backend Branch
-The back-end branch contains packages that can be used to
+The back-end branch contains package that can be used to
 perform client-server interactions.  
 Maintained by @dfx81.  
   
-Contents:
+Contents of Backend.jar:
 - backend.Client
 - backend.Server
-- backend.ServerInstances
+- backend.Worker
+- backend.RequestHandler
 
-To use, simply get the package directory (src/backend) and
-add to the classpath in your ide or during javac compilation.
-To use any of the included classes, simply import the required
-classes and use them like normal.
+To use, simply add the Backend.jar file as an external library
+and you can start using the classes. Backend.jar available in
+the Packages directory at the root of the repo.
+
+## Demo
+Example program for both the Client and the Server is also
+available. Run the ExampleServer program first then start running
+ExampleClient. All the program does is playing a simple game of
+rock paper scissors until "/exit" was sent. Shut down the server
+with "/exit".
 
 ## Progress
 Most of the classes are working as intended and simple enough to be
 used in any form of interface (CLI, Swing, JavaFX, Android, etc).
-However, there are some places that can be optimized.  
-
-Areas of improvements:
-- Change the name of ServerInstance class to something else
-(Worker would be more appropriate).
-- Separate response handling into separate class. So, no longer
-necessary to edit the ServerInstance class.

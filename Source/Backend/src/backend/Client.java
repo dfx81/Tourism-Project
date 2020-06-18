@@ -62,6 +62,7 @@ public class Client {
     // with the server.
     public void closeConnection() {
         try {
+            sendRequest("/exit");
             in.close();
             out.close();
             socket.close();
@@ -77,7 +78,7 @@ public class Client {
         try {
             out.println(message);
         } catch (Exception err) {
-            
+            // Todo: Handle exception properly
         }
     }
     
@@ -90,7 +91,7 @@ public class Client {
         try {
             response = in.readLine();
         } catch (Exception err) {
-            
+            // Todo: Handle exception properly
         }
         
         return response;
