@@ -1,7 +1,7 @@
 # Tourism-Project
 Project for STIA1123A (Programming 2) course
 
-## Backend Branch
+## Airport Branch
 The back-end branch contains package that can be used to
 perform client-server interactions.  
 Maintained by @dfx81.  
@@ -23,8 +23,8 @@ ExampleClient. All the program does is playing a simple game of
 rock paper scissors until "/exit" was sent. Shut down the server
 with "/exit".
 
+
+
 ## Progress
 Most of the classes are working as intended and simple enough to be
 used in any form of interface (CLI, Swing, JavaFX, Android, etc).
-
-#Airport
