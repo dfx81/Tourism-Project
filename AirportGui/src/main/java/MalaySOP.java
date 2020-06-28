@@ -21,7 +21,7 @@ import java.util.logging.Logger;
     private JButton back;
     private JTextField tget;
     
-    File malgen = new File ("\\Users\\thebestp9\\Documents\\NetBeansProjects\\AirportGui\\src\\main\\java\\SopMalaysia.txt");
+    File malgen = new File ("/Users/thebestp9/Desktop/Tourism-Project/AirportGui/src/main/java/SopMalaysia.txt");
     FileWriter wr;
     PrintWriter pr;
     BufferedReader br;
@@ -169,7 +169,7 @@ public MalaySOP(){
         if (e.getSource() == sub) {
         try 
         {
-            wr = new FileWriter("\\Users\\thebestp9\\Documents\\NetBeansProjects\\AirportGui\\src\\main\\java\\SopMalaysia.txt" , true);
+            wr = new FileWriter("/Users/thebestp9/Desktop/Tourism-Project/AirportGui/src/main/java/SopMalaysia.txt" , true);
             pr = new PrintWriter (wr);
             pr.write("\n" + tget.getText());
             pr.close();
@@ -190,4 +190,6 @@ public MalaySOP(){
         
     }
 }
+
+
 
