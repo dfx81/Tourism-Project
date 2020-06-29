@@ -35,7 +35,6 @@ public class Launcher{
     private JLabel text;
     
     private final String[] titles;
-    private int cur = 0; // cur are used for setting actionlistener
 
     private final Content[] topics;
     
@@ -90,6 +89,7 @@ public class Launcher{
         }
         
         // Set default content to the credit section :-P
+        //content.setViewportView(topics[5]);
         content.setViewportView(topics[5]);
         
         // - Navigation -
@@ -108,24 +108,42 @@ public class Launcher{
         // All buttons correspond to a Content and displays the topic title
         Dimension navElmD = new Dimension(160, 40);
         for (int i = 0; i != buttons.length; i++) {
-            cur = i;
             buttons[i] = new JButton(titles[i]);
             buttons[i].setSize(navElmD);
             buttons[i].setPreferredSize(navElmD);
             buttons[i].setMinimumSize(navElmD);
             buttons[i].setMaximumSize(navElmD);
-            // Detects click events using Lambda functions
-            // All it does when a click is detected is to change the
-            // Content to the correct Content.
-            buttons[i].addActionListener((ActionEvent evt) -> {
-                //content.setViewportView(topics[cur].getContent());
-                content.setViewportView(topics[cur]);
-            });
             
             nav.add(buttons[i]);
         }
         
+        // Detects click events using Lambda functions
+        // All it does when a click is detected is to change the
+        // Content to the correct Content.
+        setActions();
+        
         // Display the ui
         frame.setVisible(true);
+    }
+    
+    private void setActions() {
+        buttons[0].addActionListener((ActionEvent evt) -> {
+            content.setViewportView(topics[0]);
+        });
+        buttons[1].addActionListener((ActionEvent evt) -> {
+            content.setViewportView(topics[1]);
+        });
+        buttons[2].addActionListener((ActionEvent evt) -> {
+            content.setViewportView(topics[2]);
+        });
+        buttons[3].addActionListener((ActionEvent evt) -> {
+            content.setViewportView(topics[3]);
+        });
+        buttons[4].addActionListener((ActionEvent evt) -> {
+            content.setViewportView(topics[4]);
+        });
+        buttons[5].addActionListener((ActionEvent evt) -> {
+            content.setViewportView(topics[5]);
+        });
     }
 }

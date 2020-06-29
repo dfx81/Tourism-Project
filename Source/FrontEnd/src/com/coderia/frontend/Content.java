@@ -25,7 +25,8 @@ public abstract class Content extends JPanel {
     public abstract void buildUI(Client client);
     
     // For testing (no longer needed)
-    /*public final JPanel getContent() {
+    /*
+    public final JPanel getContent() {
         return this;
     }*/
 }
