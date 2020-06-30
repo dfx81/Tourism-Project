@@ -11,7 +11,7 @@
  * response using getResponse().
  */
 
-package backend;
+package com.coderia.backend;
 
 // Imports
 import java.net.Socket;

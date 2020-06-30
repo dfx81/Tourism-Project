@@ -13,7 +13,7 @@
  * in the program.
  */
 
-package backend;
+package com.coderia.backend;
 
 // Imports
 import java.net.Socket;
