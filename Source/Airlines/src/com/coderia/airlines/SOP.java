@@ -1,4 +1,4 @@
-package com.coderia.Airlines;
+package com.coderia.airlines;
 
 public class SOP {
     private int maxOnBoard = 100;

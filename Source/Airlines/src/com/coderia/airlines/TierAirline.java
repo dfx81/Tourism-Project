@@ -1,4 +1,4 @@
-package com.coderia.Airlines;
+package com.coderia.airlines;
 
 import java.util.Arrays;
 

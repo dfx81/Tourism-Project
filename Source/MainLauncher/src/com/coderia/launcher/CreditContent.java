@@ -11,6 +11,7 @@ package com.coderia.launcher;
 import com.coderia.backend.Client;
 import com.coderia.frontend.Content;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JLabel;
 
 // Make sure you extends Content
@@ -39,6 +40,13 @@ public class CreditContent extends Content {
         
         // Set the Content layout to Borderlayout
         this.setLayout(new BorderLayout());
+        
+        Dimension d = new Dimension(480 - 24, 480 - 24);
+        
+        credits.setSize(d);
+        credits.setPreferredSize(d);
+        credits.setMaximumSize(d);
+        credits.setMinimumSize(d);
         
         // Set the horizontalAlignment of the JLabel
         credits.setHorizontalAlignment(JLabel.CENTER);
