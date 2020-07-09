@@ -9,6 +9,7 @@
 package com.coderia.launcher;
 
 // Imports
+import com.coderia.airlines.AirlineContent;
 import com.coderia.backend.Client;
 import com.coderia.frontend.Launcher;
 import com.coderia.frontend.Content;

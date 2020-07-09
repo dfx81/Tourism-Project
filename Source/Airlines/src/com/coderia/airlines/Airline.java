@@ -13,7 +13,7 @@ public class Airline extends SOP {
     public Airline(String n, int r, int s, int p, boolean d) {
         name = n;
         rating = r;
-        max = super.getMaxOnBoard();
+        max = s + p;
         staff = s;
         passenger = p;
         distance = super.getMinDistance();
@@ -25,30 +25,30 @@ public class Airline extends SOP {
         name = n;
         rating = r;
         type = t;
-        max = super.getMaxOnBoard();
+        max = s + p;
         staff = s;
         passenger = p;
         distance = super.getMinDistance();
         domestic = d;
     }
     
-    public Airline(String n, int r, int m, int s, int p, double dist,
+    public Airline(String n, int r, int s, int p, double dist,
             boolean d) {
         name = n;
         rating = r;
-        max = m;
+        max = s + p;
         staff = s;
         passenger = p;
         distance = dist;
         domestic = d;
     }
     
-    public Airline(String n, int r, int t, int m, int s, int p, double dist,
+    public Airline(String n, int r, int t, int s, int p, double dist,
             boolean d) {
         name = n;
         rating = r;
         type = t;
-        max = m;
+        max = s + p;
         staff = s;
         passenger = p;
         distance = dist;
@@ -56,7 +56,7 @@ public class Airline extends SOP {
     }
     
     public boolean checkValid() {
-        boolean peopleOnBoard = passenger + staff <= getMaxOnBoard();
+        boolean peopleOnBoard = max <= getMaxOnBoard();
         boolean socialDistancing = distance >= getMinDistance();
         
         return peopleOnBoard && socialDistancing;

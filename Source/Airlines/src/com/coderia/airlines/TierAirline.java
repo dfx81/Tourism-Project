@@ -10,14 +10,14 @@ public class TierAirline extends Airline {
         super(n, r, 1, s, p, d);
     }
     
-    public TierAirline(String n, int r, int m, int s, int p, double dist,
+    public TierAirline(String n, int r, int s, int p, double dist,
             boolean d) {
-        super(n, r, 1, m, s, p, dist, d);
+        super(n, r, 1, s, p, dist, d);
     }
     
-    public TierAirline(String n, int r, int m, int s, int p, double dist,
+    public TierAirline(String n, int r, int s, int p, double dist,
             boolean d, int t, int[] max) {
-        super(n, r, 1, m, s, p, dist, d);
+        super(n, r, 1, s, p, dist, d);
         tier = t;
         passengerPerTier = max;
     }
