@@ -21,7 +21,7 @@ class MainPage extends JFrame implements ActionListener  {
     private JButton mal; 
     private JButton gene;
     
-    File gen = new File ("\\Users\\thebestp9\\Documents\\NetBeansProjects\\AirportGui\\src\\main\\java\\GeneralSOP.txt");
+    File gen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\GeneralSOP.txt");
     BufferedReader br;
     
     // constructor, to initialize the components 
@@ -127,12 +127,13 @@ class MainPage extends JFrame implements ActionListener  {
             try 
             {
                 br = new BufferedReader(new FileReader(gen));
-                String rt;
+                String rt = "";
+                String text = "";
                 while ((rt = br.readLine()) != null)
                 {
-                    System.out.println(rt);
-                    JOptionPane.showMessageDialog(this , rt);
+                    text += rt + "\n";
                 }
+                JOptionPane.showMessageDialog(this , text);
 
             } 
             
@@ -164,27 +165,8 @@ class Airport {
 
    public static void main(String[] args) throws Exception , FileNotFoundException , IOException  { 
        MainPage f = new MainPage(); 
+       f.setLocationRelativeTo(null);
        Image icon = Toolkit.getDefaultToolkit().getImage("icon.png");  
            f.setIconImage(icon);  
    } 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

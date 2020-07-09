@@ -20,8 +20,11 @@ import java.util.logging.Logger;
     private JButton sub;
     private JButton back;
     private JTextField tget;
+    private JScrollPane pane;
+    private JLabel inst;
+    private JLabel ainst;
     
-    File malgen = new File ("/Users/thebestp9/Desktop/Tourism-Project/AirportGui/src/main/java/SopMalaysia.txt");
+    File malgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt");
     FileWriter wr;
     PrintWriter pr;
     BufferedReader br;
@@ -82,13 +85,29 @@ public MalaySOP(){
     title.setForeground(new Color(0, 0, 0));
     d.add(title);
     
+    inst = new JLabel("Pick Your Choice"); 
+    inst.setFont(new Font("Arial", Font.PLAIN, 48)); 
+    inst.setSize(500, 100); 
+    inst.setLocation(275, 100); 
+    d.add(inst);
+    
+    ainst = new JLabel("Add A New SOP"); 
+    ainst.setFont(new Font("Arial", Font.PLAIN, 48)); 
+    ainst.setSize(500, 100); 
+    ainst.setLocation(275, 100); 
+    d.add(ainst);
+    ainst.setVisible(false);
+    
     ssop = new JTextArea(); 
     ssop.setFont(new Font("Arial", Font.PLAIN, 15)); 
     ssop.setSize(400, 150); 
     ssop.setLocation(240, 400); 
-    ssop.setLineWrap(true); 
-    ssop.setEditable(false); 
-    d.add(ssop);
+    
+    pane = new JScrollPane(ssop);
+    pane.setBounds(240, 400, 400, 150);
+    pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+    pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    d.add(pane);  
     
     //the india button
     add = new JButton("Add"); 
@@ -99,9 +118,9 @@ public MalaySOP(){
     d.add(add);
         
         //the malaysia button
-    del = new JButton("Delete"); 
+    del = new JButton("Show SOP"); 
     del.setFont(new Font("Arial", Font.BOLD, 30)); 
-    del.setSize(170, 35); 
+    del.setSize(200, 35); 
     del.setLocation(560, 300); 
     del.addActionListener(this); 
     d.add(del);
@@ -123,13 +142,14 @@ public MalaySOP(){
     back.setVisible(false);
     
     tget = new JTextField(); 
-    tget.setFont(new Font("Arial", Font.PLAIN, 30)); 
-    tget.setSize(300, 40); 
-    tget.setLocation(200, 200); 
+    tget.setFont(new Font("Arial", Font.PLAIN, 20)); 
+    tget.setSize(500, 30); 
+    tget.setLocation(200, 225); 
     d.add(tget); 
     tget.setVisible(false);
     
     setVisible(true);
+    setLocationRelativeTo(null);
 
 }
     @Override
@@ -138,12 +158,14 @@ public MalaySOP(){
         try 
             {
                 br = new BufferedReader(new FileReader(malgen));
-                String rtx;
+                String rtx = "";
+                String text = "";
                 while ((rtx = br.readLine()) != null)
                 {
+                    text += rtx + "\n";
                     System.out.println(rtx);
-                    ssop.setText(rtx);
                 }
+                ssop.setText(text);
                 
             } 
             
@@ -164,14 +186,18 @@ public MalaySOP(){
             sub.setVisible(true);
             tget.setVisible(true);
             back.setVisible(true);
+            inst.setVisible(false);
+            ainst.setVisible(true);
         }
         
         if (e.getSource() == sub) {
+            int pos = ssop.getCaretPosition();
+            ssop.insert(tget.getText() + "\n", pos);
         try 
         {
-            wr = new FileWriter("/Users/thebestp9/Desktop/Tourism-Project/AirportGui/src/main/java/SopMalaysia.txt" , true);
+            wr = new FileWriter("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt" , true);
             pr = new PrintWriter (wr);
-            pr.write("\n" + tget.getText());
+            pr.write(tget.getText() + "\n");
             pr.close();
         } 
         catch (Exception ea) 
@@ -186,10 +212,11 @@ public MalaySOP(){
             sub.setVisible(false);
             tget.setVisible(false);
             back.setVisible(false);
+            inst.setVisible(true);
+            ainst.setVisible(false);
         }
         
     }
 }
-
 
 
