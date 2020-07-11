@@ -2,7 +2,6 @@ import java.io.*;
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,14 +14,10 @@ import java.util.logging.Logger;
     private JLabel title;
     private Container d;
     private JTextArea ssop;
-    private JButton add; 
-    private JButton del;
-    private JButton sub;
-    private JButton back;
-    private JTextField tget;
+    private JButton save; 
+    private JButton show;
     private JScrollPane pane;
     private JLabel inst;
-    private JLabel ainst;
     
     File malgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt");
     FileWriter wr;
@@ -46,7 +41,7 @@ public MalaySOP(){
     bcolor.setBackground(new Color(255, 169, 195, 100));
     d.add(bcolor);
       
-        //the thin black border colour
+    //the thin black border colour
     bcolor1 = new JLabel();
     bcolor1.setSize(900, 3); 
     bcolor1.setLocation(0, 80);
@@ -54,7 +49,7 @@ public MalaySOP(){
     bcolor1.setBackground(new Color(0, 0, 0));
     d.add(bcolor1);
       
-        //the air shape graphic
+    //the air shape graphic
     image = new JLabel();
     image.setIcon(new ImageIcon("airlines2.png"));
     image.setSize(100, 80); 
@@ -62,7 +57,7 @@ public MalaySOP(){
     d.add(image);
     validate();
       
-        //the air shape graphic
+    //the air shape graphic
     image2 = new JLabel();
     image2.setIcon(new ImageIcon("airlines3.png"));
     image2.setSize(100, 80); 
@@ -70,7 +65,7 @@ public MalaySOP(){
     d.add(image2);
     validate();
         
-        //the colourful graphic
+    //the colourful graphic
     image3 = new JLabel();
     image3.setIcon(new ImageIcon("Design.png"));
     image3.setSize(900, 600); 
@@ -78,6 +73,7 @@ public MalaySOP(){
     d.add(image3);
     validate();
     
+    //The title for Malaysia Frame
     title = new JLabel("Malaysia SOP"); 
     title.setFont(new Font("Arial", Font.PLAIN, 30));
     title.setSize(300, 30); 
@@ -85,68 +81,38 @@ public MalaySOP(){
     title.setForeground(new Color(0, 0, 0));
     d.add(title);
     
-    inst = new JLabel("Pick Your Choice"); 
+    //The to-do title just to make it more realistic
+    inst = new JLabel("Edit Your SOP"); 
     inst.setFont(new Font("Arial", Font.PLAIN, 48)); 
     inst.setSize(500, 100); 
-    inst.setLocation(275, 100); 
+    inst.setLocation(300, 100); 
     d.add(inst);
     
-    ainst = new JLabel("Add A New SOP"); 
-    ainst.setFont(new Font("Arial", Font.PLAIN, 48)); 
-    ainst.setSize(500, 100); 
-    ainst.setLocation(275, 100); 
-    d.add(ainst);
-    ainst.setVisible(false);
-    
+    //The text area will be a panel
     ssop = new JTextArea(); 
-    ssop.setFont(new Font("Arial", Font.PLAIN, 15)); 
-    ssop.setSize(400, 150); 
-    ssop.setLocation(240, 400); 
+    ssop.setFont(new Font("Arial", Font.PLAIN, 15));  
     
     pane = new JScrollPane(ssop);
-    pane.setBounds(240, 400, 400, 150);
+    pane.setBounds(200, 210, 500, 170);
     pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
     pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    d.add(pane);  
+    d.add(pane); 
     
-    //the india button
-    add = new JButton("Add"); 
-    add.setFont(new Font("Arial", Font.BOLD, 30)); 
-    add.setSize(170, 35); 
-    add.setLocation(180, 300); 
-    add.addActionListener(this); 
-    d.add(add);
+    //the save button
+    save = new JButton("Save"); 
+    save.setFont(new Font("Arial", Font.BOLD, 30)); 
+    save.setSize(170, 35); 
+    save.setLocation(200, 450); 
+    save.addActionListener(this); 
+    d.add(save);
         
-        //the malaysia button
-    del = new JButton("Show SOP"); 
-    del.setFont(new Font("Arial", Font.BOLD, 30)); 
-    del.setSize(200, 35); 
-    del.setLocation(560, 300); 
-    del.addActionListener(this); 
-    d.add(del);
-    
-    sub = new JButton("Submit"); 
-    sub.setFont(new Font("Arial", Font.BOLD, 30)); 
-    sub.setSize(170, 35); 
-    sub.setLocation(560, 300); 
-    sub.addActionListener(this); 
-    d.add(sub);
-    sub.setVisible(false);
-    
-    back = new JButton("Back"); 
-    back.setFont(new Font("Arial", Font.BOLD, 30)); 
-    back.setSize(170, 35); 
-    back.setLocation(180, 300); 
-    back.addActionListener(this); 
-    d.add(back);
-    back.setVisible(false);
-    
-    tget = new JTextField(); 
-    tget.setFont(new Font("Arial", Font.PLAIN, 20)); 
-    tget.setSize(500, 30); 
-    tget.setLocation(200, 225); 
-    d.add(tget); 
-    tget.setVisible(false);
+    //the show SOP button
+    show = new JButton("Show SOP"); 
+    show.setFont(new Font("Arial", Font.BOLD, 30)); 
+    show.setSize(200, 35); 
+    show.setLocation(500, 450); 
+    show.addActionListener(this); 
+    d.add(show);
     
     setVisible(true);
     setLocationRelativeTo(null);
@@ -154,7 +120,9 @@ public MalaySOP(){
 }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == del){
+        
+        //This function will show all of the sop in the text area
+        if (e.getSource() == show){
         try 
             {
                 br = new BufferedReader(new FileReader(malgen));
@@ -179,44 +147,23 @@ public MalaySOP(){
                 Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-            
-        if (e.getSource() == add) {
-            add.setVisible(false);
-            del.setVisible(false);
-            sub.setVisible(true);
-            tget.setVisible(true);
-            back.setVisible(true);
-            inst.setVisible(false);
-            ainst.setVisible(true);
-        }
         
-        if (e.getSource() == sub) {
-            int pos = ssop.getCaretPosition();
-            ssop.insert(tget.getText() + "\n", pos);
-        try 
-        {
-            wr = new FileWriter("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt" , true);
-            pr = new PrintWriter (wr);
-            pr.write(tget.getText() + "\n");
-            pr.close();
-        } 
-        catch (Exception ea) 
+        //This function will save whatever data in the text area into the text
+        //file SOPMalaysia.txt
+        if(e.getSource() == save){
+            try
+            {
+                String save = ssop.getText();
+                pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt"));
+                pr.write(save);
+                pr.close();
+            }
+            catch (Exception ea) 
         {
             JOptionPane.showMessageDialog(null, e + "");
         }
-        }
         
-        if (e.getSource() == back) {
-            add.setVisible(true);
-            del.setVisible(true);
-            sub.setVisible(false);
-            tget.setVisible(false);
-            back.setVisible(false);
-            inst.setVisible(true);
-            ainst.setVisible(false);
         }
         
     }
 }
-
-
