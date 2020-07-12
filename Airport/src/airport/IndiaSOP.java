@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.coderia.backend.Client;
+import com.coderia.frontend.Content;
 
     class IndiaSOP extends Content implements ActionListener {
     private JLabel bcolor1;
@@ -142,12 +144,12 @@ public IndiaSOP(){
             
             catch (FileNotFoundException ex) 
             {
-                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             } 
             
             catch (IOException ex) 
             {
-                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -170,6 +172,8 @@ public IndiaSOP(){
         
     }
 }
+
+
 
 
 

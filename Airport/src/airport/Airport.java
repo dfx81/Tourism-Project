@@ -7,8 +7,10 @@ import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.coderia.backend.Client;
+import com.coderia.frontend.Content;
 
-class MainPage extends Content implements ActionListener  { 
+
+class Airport extends Content implements ActionListener  { 
 
     // Components of the Form 
     private JLabel bcolor1;
@@ -28,7 +30,9 @@ class MainPage extends Content implements ActionListener  {
     
     // constructor, to initialize the components 
     // with default values. 
-    public MainPage() 
+    
+    
+    public void BuildUI(Client client) 
     {
         /*setTitle("SOP FOR AIRPORT"); 
         setBounds(300, 200, 900, 600); 
@@ -141,12 +145,12 @@ class MainPage extends Content implements ActionListener  {
             
             catch (FileNotFoundException ex) 
             {
-                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             } 
             
             catch (IOException ex) 
             {
-                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
@@ -163,19 +167,14 @@ class MainPage extends Content implements ActionListener  {
 } 
 
 // Driver Code 
-class Airport { 
+class AirportGUI { 
 
    public static void main(String[] args) throws Exception , FileNotFoundException , IOException  { 
-       MainPage f = new MainPage(); 
+       Airport f = new Airport(); 
        f.setLocationRelativeTo(null);
        Image icon = Toolkit.getDefaultToolkit().getImage("icon.png");  
            f.setIconImage(icon);  
    } 
 }
-
-
-
-
-
 
 
