@@ -9,7 +9,7 @@
  * needs.
  */
 
-package backend;
+package com.coderia.backend;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

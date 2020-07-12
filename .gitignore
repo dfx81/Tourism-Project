@@ -24,5 +24,10 @@
 /Source/ExampleClient/nbproject/private/
 /Source/ExampleServer/build/
 /Source/ExampleServer/dist/
+<<<<<<< HEAD
 /AirportGui/target/
 /Airport/dist/
+=======
+/Source/Frontend/build/
+/Source/Frontend/dist/
+>>>>>>> 33634fb4ee648b06946b304da605b206fac721d0

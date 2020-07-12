@@ -6,9 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import com.coderia.backend.Client;
 
-class MainPage extends JFrame implements ActionListener  { 
+class MainPage extends Content implements ActionListener  { 
 
     // Components of the Form 
     private JLabel bcolor1;
@@ -172,6 +172,9 @@ class Airport {
            f.setIconImage(icon);  
    } 
 }
+
+
+
 
 
 
