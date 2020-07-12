@@ -1,3 +1,5 @@
+package airport;
+
 import java.io.*;
 import javax.swing.*; 
 import java.awt.*; 
@@ -5,7 +7,7 @@ import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-    class MalaySOP extends JFrame implements ActionListener {
+    class IndiaSOP extends Content implements ActionListener {
     private JLabel bcolor1;
     private JLabel bcolor;
     private JLabel image;
@@ -19,21 +21,22 @@ import java.util.logging.Logger;
     private JScrollPane pane;
     private JLabel inst;
     
-    File malgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt");
+    File indgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopIndia.txt");
     FileWriter wr;
     PrintWriter pr;
     BufferedReader br;
     
-public MalaySOP(){
+public IndiaSOP(){
     
-    setTitle("SOP FOR MALAYSIA"); 
+    /*setTitle("SOP FOR INDIA"); 
     setBounds(300, 200, 900, 600); 
     setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
-    setResizable(false);
+    setResizable(false);*/
     
     d = getContentPane(); 
     d.setLayout(null);
     
+    //the pink colour Panel
     bcolor = new JLabel();
     bcolor.setSize(900, 80); 
     bcolor.setLocation(0, 0);
@@ -57,7 +60,7 @@ public MalaySOP(){
     d.add(image);
     validate();
       
-    //the air shape graphic
+        //the air shape graphic
     image2 = new JLabel();
     image2.setIcon(new ImageIcon("airlines3.png"));
     image2.setSize(100, 80); 
@@ -73,11 +76,11 @@ public MalaySOP(){
     d.add(image3);
     validate();
     
-    //The title for Malaysia Frame
-    title = new JLabel("Malaysia SOP"); 
+    //The title for India Frame
+    title = new JLabel("India SOP"); 
     title.setFont(new Font("Arial", Font.PLAIN, 30));
     title.setSize(300, 30); 
-    title.setLocation(355, 30); 
+    title.setLocation(385, 30); 
     title.setForeground(new Color(0, 0, 0));
     d.add(title);
     
@@ -114,8 +117,8 @@ public MalaySOP(){
     show.addActionListener(this); 
     d.add(show);
     
-    setVisible(true);
-    setLocationRelativeTo(null);
+    //setVisible(true);
+    //setLocationRelativeTo(null);
 
 }
     @Override
@@ -125,7 +128,7 @@ public MalaySOP(){
         if (e.getSource() == show){
         try 
             {
-                br = new BufferedReader(new FileReader(malgen));
+                br = new BufferedReader(new FileReader(indgen));
                 String rtx = "";
                 String text = "";
                 while ((rtx = br.readLine()) != null)
@@ -149,12 +152,12 @@ public MalaySOP(){
         }
         
         //This function will save whatever data in the text area into the text
-        //file SOPMalaysia.txt
+        //file SOPIndia.txt
         if(e.getSource() == save){
             try
             {
                 String save = ssop.getText();
-                pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\SopMalaysia.txt"));
+                pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopIndia.txt"));
                 pr.write(save);
                 pr.close();
             }
@@ -167,3 +170,6 @@ public MalaySOP(){
         
     }
 }
+
+
+

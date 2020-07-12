@@ -1,10 +1,12 @@
+package airport;
+
 import java.io.*;
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 class MainPage extends JFrame implements ActionListener  { 
 
@@ -21,17 +23,17 @@ class MainPage extends JFrame implements ActionListener  {
     private JButton mal; 
     private JButton gene;
     
-    File gen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\AirportGui\\src\\main\\java\\GeneralSOP.txt");
+    File gen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\GeneralSOP.txt");
     BufferedReader br;
     
     // constructor, to initialize the components 
     // with default values. 
     public MainPage() 
     {
-        setTitle("SOP FOR AIRPORT"); 
+        /*setTitle("SOP FOR AIRPORT"); 
         setBounds(300, 200, 900, 600); 
         setDefaultCloseOperation(EXIT_ON_CLOSE); 
-        setResizable(false); 
+        setResizable(false); */
 
         c = getContentPane(); 
         c.setLayout(null); 
@@ -115,7 +117,7 @@ class MainPage extends JFrame implements ActionListener  {
         gene.addActionListener(this); 
         c.add(gene);
 
-        setVisible(true);
+        //setVisible(true);
     } 
 
    // method actionPerformed() 
@@ -170,3 +172,7 @@ class Airport {
            f.setIconImage(icon);  
    } 
 }
+
+
+
+
