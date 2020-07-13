@@ -24,8 +24,8 @@ public class MainLauncher {
         // List all of the Contents. For now, all of it are CreditContents
         Content[] topics = {
             new CreditContent(),
-            new AirlineContent(),
             new CreditContent(),
+            new sop(),
             new CreditContent(),
             new CreditContent(),
             new CreditContent()
