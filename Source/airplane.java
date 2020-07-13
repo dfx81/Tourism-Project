@@ -184,7 +184,7 @@ int ro,col;
              break;
              
             case "MAS":
-            if(name.equals("")||mask.equals("false")||ns.equals("120-130")|| ns.equals("130-140")|| ns.equals("140-150")|| temp.equals("Above 37")){
+            if(name.equals("")||mask.equals("false")||ns.equals("130-140")|| ns.equals("140-150")|| temp.equals("Above 37")){
             JOptionPane.showMessageDialog(null,"Please check and follow SOP of the selected Airplane");
             }else{
             row[0] =tf1.getText();
