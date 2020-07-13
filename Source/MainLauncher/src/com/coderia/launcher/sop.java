@@ -113,7 +113,7 @@ int ro,col;
      p2.add(l3);
      p2.add(box2);
     
-     String[] NumberofSeat = {"1-10","10-20","20-30","30-40","40-50","50-60","60-70","70-80","80-90","100-110","110-120","120-130","1300-140","140-150"};
+     String[] NumberofSeat = {"1-10","10-20","20-30","30-40","40-50","50-60","60-70","70-80","80-90","100-110","110-120","120-130","130-140","140-150"};
      JComboBox box3 = new JComboBox(NumberofSeat);
      JLabel l4 = new JLabel("Number of Seat:");
      p2.add(l4);
@@ -168,12 +168,13 @@ int ro,col;
            String ap   = box4.getSelectedItem().toString();
            String mask = box.getSelectedItem().toString();
            String name = tf1.getText();
-          
-            if(name.equals("")||ap.equals("MAS")|| ap.equals("Malindo")||temp.equals("mask")||ns.equals("120-130")|| ns.equals("130-140")|| ns.equals("140-150")|| temp.equals("Above 37")){
+           
+           switch(ap){
+            case "Air Asia" :
+                if(name.equals("")||mask.equals("false")||ns.equals("120-130")|| ns.equals("130-140")|| ns.equals("140-150")|| temp.equals("Above 37")){
                 JOptionPane.showMessageDialog(null,"Please check and follow SOP of the selected Airplane");
             }else{
-            
-           row[0] =tf1.getText();
+             row[0] =tf1.getText();
             row[1] =box2.getSelectedItem().toString();
              row[2] =box3.getSelectedItem().toString();
               row[3] =box4.getSelectedItem().toString();
@@ -184,7 +185,46 @@ int ro,col;
             countLines ();
             addData(tf1.getText(),box2.getSelectedItem().toString(),box3.getSelectedItem().toString(),box4.getSelectedItem().toString(),box.getSelectedItem().toString());
             JOptionPane.showMessageDialog(null,"Successfully saved");
+                } 
+             break;
+             
+            case "MAS":
+            if(name.equals("")||mask.equals("false")||ns.equals("120-130")|| ns.equals("130-140")|| ns.equals("140-150")|| temp.equals("Above 37")){
+            JOptionPane.showMessageDialog(null,"Please check and follow SOP of the selected Airplane");
+            }else{
+            row[0] =tf1.getText();
+            row[1] =box2.getSelectedItem().toString();
+             row[2] =box3.getSelectedItem().toString();
+              row[3] =box4.getSelectedItem().toString();
+              row[4] =box.getSelectedItem().toString();
+              model.addRow(row);
+            creatFolder();
+            readFile();
+            countLines ();
+            addData(tf1.getText(),box2.getSelectedItem().toString(),box3.getSelectedItem().toString(),box4.getSelectedItem().toString(),box.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null,"Successfully saved");     
+                  }
+            
+            break;
+            case "Malindo":
+             if(name.equals("")||mask.equals("false")|| ns.equals("140-150")|| temp.equals("Above 37")){
+              JOptionPane.showMessageDialog(null,"Please check and follow SOP of the selected Airplane");
+            }else{
+            row[0] =tf1.getText();
+            row[1] =box2.getSelectedItem().toString();
+             row[2] =box3.getSelectedItem().toString();
+              row[3] =box4.getSelectedItem().toString();
+              row[4] =box.getSelectedItem().toString();
+              model.addRow(row);
+            creatFolder();
+            readFile();
+            countLines ();
+            addData(tf1.getText(),box2.getSelectedItem().toString(),box3.getSelectedItem().toString(),box4.getSelectedItem().toString(),box.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null,"Successfully saved");     
+                  }
             }
+          
+           
          }
      });
   
