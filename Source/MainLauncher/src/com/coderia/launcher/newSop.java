@@ -383,7 +383,12 @@ private JComboBox box,box2,box3,box4;
     for(int i=0; i<SOPairplanelist.size();i++){
      if(SOPairplanelist.get(i).name.equalsIgnoreCase(input)){
       JOptionPane.showMessageDialog(b7,"Found!","Search name",2);
-      tf1.setText(SOPairplanelist.get(i).name);
+      JOptionPane.showMessageDialog(null,"1.Name:"+"   "+SOPairplanelist.get(i).name+"\n"+
+                                                 "2. Temperature:"+ "   "+SOPairplanelist.get(i).temperature+"\n"+
+                                                  "3. Number of Seat:"+"   "+SOPairplanelist.get(i).numberOfSeat+"\n"+
+                                                  "4. Type of airplane:"+"   "+SOPairplanelist.get(i).typeOfAirplane+"\n"+
+                                                    "5. Status of mask:"+"   "+SOPairplanelist.get(i).mask );
+  
      
      
           return;
