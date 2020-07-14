@@ -1,18 +1,10 @@
-/* MainLauncher.java
- * ---
- * Author: Danial Fitri (dfx)
- * This is the entry point of the program
- * Create the connection to the Server, create the Launcher UI, and
- * display the UI.
- */
-
 package com.coderia.launcher;
 
 // Imports
 import com.coderia.backend.Client;
 import com.coderia.frontend.Launcher;
 import com.coderia.frontend.Content;
-
+import com.coderia.Restaurant.GroupProjectSOP;
 // Start of class
 public class MainLauncher {
     // Main method
@@ -24,9 +16,9 @@ public class MainLauncher {
         // List all of the Contents. For now, all of it are CreditContents
         Content[] topics = {
             new CreditContent(),
-            new AirlineContent(),
             new CreditContent(),
             new CreditContent(),
+            new GroupProjectSOP(),
             new CreditContent(),
             new CreditContent()
         };
