@@ -25,7 +25,7 @@ public class MainLauncher {
         Content[] topics = {
             new CreditContent(),
             new CreditContent(),
-            new sop(),
+            new newSop(),
             new CreditContent(),
             new CreditContent(),
             new CreditContent()
