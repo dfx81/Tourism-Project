@@ -51,18 +51,20 @@ private JTable table;
 private JButton b1,b2,b3,b4;
 private JTextField tf1,tf2,tf3,tf4;
 private JComboBox box,box2,box3,box4;
-int row,col;
 
-
-   
+ ArrayList<SOPAirplane> SOPairplanelist;
+ String header[] = new String[]{"Name","Temperature","Number of seat","Type of Airplane ","Mask"};
+ DefaultTableModel dtm;
+ int row,col;
+    
     @Override
     public void buildUI(Client yes){
-  
- 
-     ArrayList<SOPAirplane> SOPairplanelist;
-     String header[] = new String[]{"Name","Temperature","Number of seat","Type of Airplane ","Mask"};
-     DefaultTableModel dtm;
-     int row,col;
+     SOPairplanelist = new ArrayList<>();
+     dtm = new DefaultTableModel(header,0);
+     
+    
+     
+   
      JPanel p1 = new JPanel();
      setLayout(new BorderLayout()); 
      this.add(p1,BorderLayout.SOUTH);
@@ -72,10 +74,12 @@ int row,col;
     JButton b1 = new JButton("SOP AIR ASIA");
     JButton b2 = new JButton("SOP MAS");
     JButton b3 = new JButton("SOP MALINDO");
+    JButton b12 = new JButton ("Save all");
      
     p1.add(b1);
     p1.add(b2);       
-    p1.add(b3);   
+    p1.add(b3); 
+    p1.add(b12);
     
   
  
@@ -89,10 +93,7 @@ int row,col;
      p3.setLayout(new BorderLayout());
      JTable table = new JTable();
      
-     SOPairplanelist = new ArrayList<>();
-     dtm = new DefaultTableModel(header,0);
-   
-     table.setModel(dtm);
+     
      
      table.setBackground(Color.WHITE);
      table.setForeground(Color.BLACK);
@@ -101,7 +102,7 @@ int row,col;
      table.setRowHeight(30);
      p3.add(table);
      this.add(p3,BorderLayout.CENTER);
-      
+       table.setModel(dtm);
 
     
 
@@ -113,20 +114,20 @@ int row,col;
      JLabel l2 = new JLabel("NAME:");
      p2.add(l2);
      p2.add(tf1);
-     String[] temperature = {"","Below 37","Above 37"};
-     JComboBox box2 = new JComboBox(temperature);
+     String[] ptemperature = {"","Below 37","Above 37"};
+     JComboBox box2 = new JComboBox(ptemperature);
      JLabel l3 = new JLabel("Temperature:");
      p2.add(l3);
      p2.add(box2);
     
-     String[] numberOfSeat = {"","1-10","10-20","20-30","30-40","40-50","50-60","60-70","70-80","80-90","100-110","110-120","120-130","130-140","140-150"};
-     JComboBox box3 = new JComboBox(numberOfSeat);
+     String[] numberSeat = {"","1-10","10-20","20-30","30-40","40-50","50-60","60-70","70-80","80-90","100-110","110-120","120-130","130-140","140-150"};
+     JComboBox box3 = new JComboBox(numberSeat);
      JLabel l4 = new JLabel("Number of Seat:");
      p2.add(l4);
      p2.add(box3);
      
-     String[] typeOfAirplane = {"","Air Asia","MAS","Malindo"};
-     JComboBox box4 = new JComboBox(typeOfAirplane);
+     String[] typeAirplane = {"","Air Asia","MAS","Malindo"};
+     JComboBox box4 = new JComboBox(typeAirplane);
      JLabel l9 = new JLabel("Type of Airplane:");
      p2.add(l9);
      p2.add(box4);
@@ -140,15 +141,18 @@ int row,col;
      JLabel l6 = new JLabel("            ");
      p2.add(l6);
      
-     JButton b4 = new JButton("Add and Save");
+     JButton b4 = new JButton("Add");
     
      p2.add(b4);
      
-     JLabel l7 = new JLabel("            ");
-     p2.add(l7);
+       JLabel l12 = new JLabel("            ");
+     p2.add(l12);
      
-     JButton b5 = new JButton("Delete");
-     p2.add(b5);
+     JButton b10 = new JButton("Reset");
+     p2.add(b10);
+     
+     
+     
      
      JLabel l8 = new JLabel("            ");
      p2.add(l8);
@@ -169,11 +173,12 @@ int row,col;
      JButton b7 = new JButton("Search");
      p2.add(b7);
      
-       JLabel l12 = new JLabel("            ");
-     p2.add(l12);
+     JLabel l7 = new JLabel("            ");
+     p2.add(l7);
      
-     JButton b10 = new JButton("Reset");
-     p2.add(b10);
+     JButton b5 = new JButton("Delete");
+     p2.add(b5);
+     
      
      
      
@@ -189,7 +194,7 @@ int row,col;
          
          @Override
          public void actionPerformed(ActionEvent ae) {
-            String temperature = box2.getSelectedItem().toString();
+         String temperature = box2.getSelectedItem().toString();
            String numberOfSeat = box3.getSelectedItem().toString();
            String typeOfAirplane   = box4.getSelectedItem().toString();
            String mask = box.getSelectedItem().toString();
@@ -203,15 +208,17 @@ int row,col;
        
              SOPairplanelist.add(new SOPAirplane(name,temperature,numberOfSeat,typeOfAirplane,mask));
              dtm.setRowCount(0);
+  
             for(int i = 0; i < SOPairplanelist.size(); i++){
-            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask};
+            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask,};
             dtm.addRow(objs);
-            creatFolder();
-            readFile();
-            countLines ();
-            addData(tf1.getText(),box2.getSelectedItem().toString(),box3.getSelectedItem().toString(),box4.getSelectedItem().toString(),box.getSelectedItem().toString());
-           
-                } 
+         
+         
+            
+       
+        }     
+            
+                
                 }
              break;
              
@@ -222,14 +229,13 @@ int row,col;
        
              SOPairplanelist.add(new SOPAirplane(name,temperature,numberOfSeat,typeOfAirplane,mask));
              dtm.setRowCount(0);
-            for(int i = 0; i < SOPairplanelist.size(); i++){
-            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask};
-             dtm.addRow(objs);
-            creatFolder();
-            readFile();
-            countLines ();
-            addData(tf1.getText(),box2.getSelectedItem().toString(),box3.getSelectedItem().toString(),box4.getSelectedItem().toString(),box.getSelectedItem().toString());
+  
            
+           for(int i = 0; i < SOPairplanelist.size(); i++){
+            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask,};
+            dtm.addRow(objs);
+       
+         
                 } 
                 }
             break;
@@ -240,14 +246,12 @@ int row,col;
        
              SOPairplanelist.add(new SOPAirplane(name,temperature,numberOfSeat,typeOfAirplane,mask));
              dtm.setRowCount(0);
-            for(int i = 0; i < SOPairplanelist.size(); i++){
-            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask};
+     
+           for(int i = 0; i < SOPairplanelist.size(); i++){
+            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask,};
             dtm.addRow(objs);
-            creatFolder();
-            readFile();
-            countLines ();
-            addData(tf1.getText(),box2.getSelectedItem().toString(),box3.getSelectedItem().toString(),box4.getSelectedItem().toString(),box.getSelectedItem().toString());
-           
+            
+         
                 } 
                 }
             }
@@ -255,17 +259,30 @@ int row,col;
            
          }
      });
+   
      b5.addActionListener(new ActionListener(){
          @Override
          public void actionPerformed(ActionEvent ae) {
-           int i = table.getSelectedRow();
-           if(i>=0){
-               dtm.removeRow(i);
-           }else{
-            JOptionPane.showMessageDialog(null,"Please select a row to delete");
-           }
+         int dialogButton = JOptionPane.YES_NO_OPTION;
+    int dialogResult = JOptionPane.showConfirmDialog(null,"Delete this data","Delete",dialogButton);
+    if(dialogResult == 0){
+        dtm.removeRow(row);
+        SOPairplanelist.remove(row);
+        dtm.setRowCount(0);
+        for(int i=0; i< SOPairplanelist.size(); i++){
+           Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask,};
+            dtm.addRow(objs);
+           
+        }
+     
+    }else{
+        
+    }
+    
           
          }
+
+
      });
      
      
@@ -310,8 +327,8 @@ int row,col;
          @Override
         
          public void actionPerformed(ActionEvent ae) {
-         int row;
-         int col;
+         int k = table.getSelectedRow();
+           if(k>=0){
         row = table.getSelectedRow();
         col = table.getComponentCount();
         System.out.println(row +"+"+col);
@@ -347,6 +364,10 @@ int row,col;
 } 
      
           
+         
+         }else{
+             JOptionPane.showMessageDialog(null,"Please select a row to edit");   
+           }
          }
      });
       
@@ -358,40 +379,12 @@ int row,col;
        
         
      
-    String input = JOptionPane.showInputDialog(this,"Search name");
+    String input = JOptionPane.showInputDialog(null,"Search name");
     for(int i=0; i<SOPairplanelist.size();i++){
      if(SOPairplanelist.get(i).name.equalsIgnoreCase(input)){
       JOptionPane.showMessageDialog(b7,"Found!","Search name",2);
       tf1.setText(SOPairplanelist.get(i).name);
-      String tem = SOPairplanelist.get(i).temperature;
-      String numbs  = SOPairplanelist.get(i).numberOfSeat;
-      String typeOf  = SOPairplanelist.get(i).typeOfAirplane;
-       String mk  =SOPairplanelist.get(i).mask;
-       
-      for(int j=0; j<(box2.getItemCount());j++){
-        if(box2.getItemAt(i).equals(tem)){
-      box2.setSelectedIndex(i);
-      
-   }
-} 
-       for(int j=0; j<(box3.getItemCount());j++){
-        if(box3.getItemAt(i).equals(numbs)){
-      box3.setSelectedIndex(i);
-      
-   }
-} 
-        for(int j=0; j<(box4.getItemCount());j++){
-        if(box4.getItemAt(i).equals(typeOf)){
-      box4.setSelectedIndex(i);
-      
-   }
-} 
-         for(int j=0; j<(box.getItemCount());j++){
-        if(box.getItemAt(i).equals(mk)){
-      box.setSelectedIndex(i);
-      
-   }
-} 
+     
      
           return;
      }
@@ -406,8 +399,9 @@ int row,col;
          @Override
       
          public void actionPerformed(ActionEvent ae) {
+       int k = table.getSelectedRow();
+           if(k>=0){
        
-        int row;
         String editname = tf1.getText();
         String edittemperature= box2.getSelectedItem().toString();
         String editnumberOfSeat= box3.getSelectedItem().toString();
@@ -426,11 +420,13 @@ int row,col;
       
        
        dtm.setRowCount(0);
-       for(int i=0; i<SOPairplanelist.size(); i++){
-            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask};
+          for(int i = 0; i < SOPairplanelist.size(); i++){
+            Object[]objs = {SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask,};
             dtm.addRow(objs);
-           
         }    
+         }else{
+              JOptionPane.showMessageDialog(null,"Please select a row to update");     
+           }
          }
      });
         
@@ -445,6 +441,26 @@ int row,col;
           box3.setSelectedIndex(0);
            box4.setSelectedIndex(0);        
         
+         }
+     });
+         
+          b12.addActionListener(new ActionListener(){
+         @Override
+      
+         public void actionPerformed(ActionEvent ae) {
+          int respone =  JOptionPane.showConfirmDialog(null,"Please make sure you have UPDATED each row of the information to get the ACURRATE FORMAT","Confirm",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+           if(respone==JOptionPane.YES_OPTION){
+          for(int i = 0; i < SOPairplanelist.size(); i++){
+          
+           
+            creatFolder();
+            readFile();
+            countLines ();
+            addData(SOPairplanelist.get(i).name,SOPairplanelist.get(i).temperature,SOPairplanelist.get(i).numberOfSeat,SOPairplanelist.get(i).typeOfAirplane,SOPairplanelist.get(i).mask);
+             }  
+           }else{
+               JOptionPane.showMessageDialog(null,"Please update now"); 
+           }
          }
      });
      
@@ -474,7 +490,7 @@ int row,col;
         
     }
     
-    void addData(String nm,String temp, String ns,String ap,String ms){
+    void addData(String name,String temperature, String numberOfSeat,String typeOfAirplane,String mask){
         try {
             RandomAccessFile raf = new RandomAccessFile(f+"\\passengerInfo.txt","rw");
           for(int i=0;i<ln;i++){
@@ -483,12 +499,15 @@ int row,col;
           if(ln>0){
              raf.writeBytes("\r\n");
              raf.writeBytes("\r\n");
-          }
-             raf.writeBytes("Name:"+nm+"\r\n");
-              raf.writeBytes("Temperature:"+temp+"\r\n");
-               raf.writeBytes("Number of seat:"+ns+"\r\n");
-                raf.writeBytes("Type of airplane:"+ap+"\r\n");
-                 raf.writeBytes("Mask:"+ms+"\r\n");
+                       }
+             raf.writeBytes("Name:"+name+"\r\n");
+              raf.writeBytes("Temperature:"+temperature+"\r\n");
+              raf.writeBytes("Number of seat:"+numberOfSeat+"\r\n");
+               raf.writeBytes("Type of airplane:"+typeOfAirplane+"\r\n");
+                 raf.writeBytes("Mask:"+mask+"\r\n");
+                  
+                  
+
                 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(newSop.class.getName()).log(Level.SEVERE, null, ex);
@@ -502,8 +521,10 @@ int row,col;
              RandomAccessFile raf = new RandomAccessFile(f+"\\passengerInfo.txt","rw");
              for(int i=0;raf.readLine()!=null;i++){
                 ln++;
+                
              }
              System.out.println("number of lines:"+ln);
+            
          } catch (FileNotFoundException ex) {
              Logger.getLogger(newSop.class.getName()).log(Level.SEVERE, null, ex);
          } catch (IOException ex) {
@@ -515,3 +536,7 @@ int row,col;
     
 
  }
+
+
+
+

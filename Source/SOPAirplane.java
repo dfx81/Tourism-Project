@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.coderia.launcher;
 
 /**
@@ -12,9 +17,11 @@ public class SOPAirplane {
     SOPAirplane(String nm, String temp, String ms, String ns, String ta) {
         this.name = nm;
         this.temperature = temp;
-        this.mask = ms;
         this.numberOfSeat = ns;
-        this.typeOfAirplane = ta;
+         this.typeOfAirplane = ta;
+        this.mask = ms;
+        
+       
         
     }
 
@@ -25,4 +32,5 @@ public class SOPAirplane {
 
   
 }
+
 }

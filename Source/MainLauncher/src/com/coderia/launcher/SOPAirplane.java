@@ -17,9 +17,11 @@ public class SOPAirplane {
     SOPAirplane(String nm, String temp, String ms, String ns, String ta) {
         this.name = nm;
         this.temperature = temp;
-        this.mask = ms;
         this.numberOfSeat = ns;
-        this.typeOfAirplane = ta;
+         this.typeOfAirplane = ta;
+        this.mask = ms;
+        
+       
         
     }
 
@@ -30,4 +32,5 @@ public class SOPAirplane {
 
   
 }
+
 }
