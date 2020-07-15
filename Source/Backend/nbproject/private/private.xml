@@ -2,11 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/hp%20pc/Desktop/Tourism-Project/Source/Backend/src/com/coderia/backend/Server.java</file>
             <file>file:/C:/Users/hp%20pc/Desktop/Tourism-Project/Source/Backend/src/com/coderia/backend/Worker.java</file>
             <file>file:/C:/Users/hp%20pc/Desktop/Tourism-Project/Source/Backend/src/com/coderia/backend/RequestHandler.java</file>
             <file>file:/C:/Users/hp%20pc/Desktop/Tourism-Project/Source/Backend/src/com/coderia/backend/Client.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> b35b6d09f5f78fc0062685ee0992f45bda1fcbbe
     </open-files>
 </project-private>
