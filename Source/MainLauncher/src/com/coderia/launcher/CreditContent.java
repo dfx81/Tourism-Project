@@ -24,7 +24,7 @@ public class CreditContent extends Content {
     public void buildUI(Client client) {
         // Create a JLabel and display the credits using html formating
         JLabel credits = new JLabel("<html>"
-                + "<h1>untitled tourism thingy</h1>"
+                + "<h1 style='text-align:center'>The Tour Guide</h1><br/>"
                 + "<p style='text-align:center'>"
                 + "Created by Coders in Action (coderia)<br/><br/>"
                 + "- Programmers - <br/>"
@@ -36,7 +36,9 @@ public class CreditContent extends Content {
                 + "- Backend Programming -<br/>"
                 + "Danial Fitri<br/><br/>"
                 + "- Frontend Programming -<br/>"
-                + "Danial Fitri</p></html>");
+                + "Danial Fitri<br/><br/>"
+                + "<sub>Disclaimer: Gokul's Hotel topic removed from this "
+                + "version due to some issues</sub></p></html>");
         
         // Set the Content layout to Borderlayout
         this.setLayout(new BorderLayout());

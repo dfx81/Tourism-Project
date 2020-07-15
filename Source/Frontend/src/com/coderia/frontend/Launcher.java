@@ -19,6 +19,9 @@ import com.coderia.backend.Client;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -43,10 +46,10 @@ public class Launcher{
     // the Client class to connect to Server
     public Launcher(Content[] topics, String[] titles, Client client) {
         this.client = client;
-        frame = new JFrame("untitled tourism project");
+        frame = new JFrame("Coderia - Tour Guide");
         nav = new JPanel();
         content = new JScrollPane();
-        buttons = new JButton[6];
+        buttons = new JButton[5];
         this.topics = topics;
         this.titles = titles;
     }
@@ -59,6 +62,16 @@ public class Launcher{
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                client.closeConnection();
+                System.exit(0);
+            }
+        });
+        
+        frame.setIconImage(new ImageIcon("./res/icon.png").getImage());
         
         // Setting up the navigation area
         // Nav are added to the west of BorderLayout
@@ -90,13 +103,13 @@ public class Launcher{
         
         // Set default content to the credit section :-P
         //content.setViewportView(topics[5]);
-        content.setViewportView(topics[5]);
+        content.setViewportView(topics[4]); // Hotel removed :'(
         
         // - Navigation -
         
         // Set the text above the nav area (for decoration)
         Dimension textD = new Dimension(160, 20);
-        text = new JLabel("Placeholder text");
+        text = new JLabel("Topic Lists");
         text.setHorizontalAlignment(JLabel.CENTER);
         text.setSize(textD);
         text.setPreferredSize(textD);
@@ -142,8 +155,8 @@ public class Launcher{
         buttons[4].addActionListener((ActionEvent evt) -> {
             content.setViewportView(topics[4]);
         });
-        buttons[5].addActionListener((ActionEvent evt) -> {
+        /*buttons[5].addActionListener((ActionEvent evt) -> {
             content.setViewportView(topics[5]);
-        });
+        });*/
     }
 }

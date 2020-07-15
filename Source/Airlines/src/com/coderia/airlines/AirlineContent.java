@@ -55,19 +55,25 @@ public class AirlineContent extends Content {
         setPreferredSize(dim);
         setMinimumSize(dim);
         setMaximumSize(dim);
-
+        
+        JButton sop = new JButton("SOP");
         JButton add = new JButton("ADD");
+        JButton srch = new JButton("SEARCH");
         JButton edit = new JButton("EDIT");
         JButton del = new JButton("DEL");
 
         JPanel panel = new JPanel();
-
+        
+        panel.add(sop);
         panel.add(add);
+        panel.add(srch);
         panel.add(edit);
         panel.add(del);
 
         // Set action listeners
+        sop.addActionListener((ActionEvent e) -> showSOP());
         add.addActionListener((ActionEvent e) -> addRecord());
+        srch.addActionListener((ActionEvent e) -> search());
         edit.addActionListener((ActionEvent e) -> editRecord());
         del.addActionListener((ActionEvent e) -> deleteRecord());
 
@@ -462,5 +468,41 @@ public class AirlineContent extends Content {
         }
 
         update(data, true);
+    }
+    
+    private void showSOP() {
+        SOP ssop = new SOP();
+        JOptionPane.showMessageDialog(null, new JLabel("<html>"
+                + "<h1>SOP</h1>"
+                + "<ul>"
+                + "<li>Maximum people on board: " + ssop.getMaxOnBoard() + "</li>"
+                + "<li>Minimum distance per person (m): " + ssop.getMinDistance()
+                + "</li></ul></html>"));
+    }
+    
+    private void search() {
+        JTextField tf = new JTextField();
+        int result = JOptionPane.showConfirmDialog(null, new JComponent[]{
+            new JLabel("Enter name of airline: "), tf}, "Search",
+                JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            boolean found = false;
+            for (Airline a : airlines) {
+                if (a.getName().equals(tf.getText())) {
+                    JOptionPane.showMessageDialog(null, new JLabel("<html>"
+                    + "<h1>Found!</h1>"
+                    + "<p>Name: " + a.getName() + "<br/>"
+                    + "People on board: " + a.getMax() + "<br/>"
+                    + "Distance per person (m): " + a.getDistance()
+                    + "</p></html>"));
+                    found = true;
+                }
+            }
+            
+            if (!found) {
+                JOptionPane.showMessageDialog(null, "Airline not found");
+            }
+        }
     }
 }
