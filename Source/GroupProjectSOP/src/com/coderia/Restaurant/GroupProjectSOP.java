@@ -146,12 +146,13 @@ public class GroupProjectSOP extends Content{
             public void actionPerformed(ActionEvent e) {
                 String search = JOptionPane.showInputDialog(null,"Please enter the details you wish to search");
                 for(int i=0; i<listofcust.size(); i++ ){
-                    if(listofcust.get(i).inName.equalsIgnoreCase(search) ||listofcust.get(i).inDate.equalsIgnoreCase(search)  ){
+                    if(listofcust.get(i).inName.equalsIgnoreCase(search) ||listofcust.get(i).inDate.equalsIgnoreCase(search) || listofcust.get(i).inContactNumber.equalsIgnoreCase(search) ){
                     JOptionPane.showMessageDialog(b3, "Your data is found!!!", "Search Data", 2);
                     
                     String data = listofcust.get(i).inDate+"\n"+listofcust.get(i).inName +"\n"+
                                   listofcust.get(i).inContactNumber +" \n" + listofcust.get(i).inTemperature + "Celclius Degree";
                     JOptionPane.showMessageDialog(null, data , "Search Data", 3);
+                    
                     }JOptionPane.showMessageDialog(b3, "Your  is not found!!!", "Search Data", 2);
                     
             }
