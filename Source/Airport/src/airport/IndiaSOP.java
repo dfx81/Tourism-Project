@@ -7,9 +7,9 @@ import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.coderia.backend.Client;
-import com.coderia.frontend.Content;
+//import com.coderia.frontend.Content;
 
-    class IndiaSOP extends Content implements ActionListener {
+    class IndiaSOP extends JFrame implements ActionListener {
     private JLabel bcolor1;
     private JLabel bcolor;
     private JLabel image;
@@ -22,18 +22,20 @@ import com.coderia.frontend.Content;
     private JButton show;
     private JScrollPane pane;
     private JLabel inst;
+    private Client client;
     
-    File indgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopIndia.txt");
-    FileWriter wr;
-    PrintWriter pr;
-    BufferedReader br;
+    //File indgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopIndia.txt");
+    //FileWriter wr;
+    //PrintWriter pr;
+    //BufferedReader br;
     
-public IndiaSOP(){
+public IndiaSOP(Client client){
     
-    /*setTitle("SOP FOR INDIA"); 
+    this.client = client;
+    setTitle("SOP FOR INDIA"); 
     setBounds(300, 200, 900, 600); 
     setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
-    setResizable(false);*/
+    setResizable(false);
     
     d = getContentPane(); 
     d.setLayout(null);
@@ -119,8 +121,8 @@ public IndiaSOP(){
     show.addActionListener(this); 
     d.add(show);
     
-    //setVisible(true);
-    //setLocationRelativeTo(null);
+    setVisible(true);
+    setLocationRelativeTo(null);
 
 }
     @Override
@@ -128,9 +130,9 @@ public IndiaSOP(){
         
         //This function will show all of the sop in the text area
         if (e.getSource() == show){
-        try 
+            try 
             {
-                br = new BufferedReader(new FileReader(indgen));
+                /*br = new BufferedReader(new FileReader(indgen));
                 String rtx = "";
                 String text = "";
                 while ((rtx = br.readLine()) != null)
@@ -138,11 +140,24 @@ public IndiaSOP(){
                     text += rtx + "\n";
                     System.out.println(rtx);
                 }
+                ssop.setText(text);*/
+                
+                client.sendRequest("/airport-isop-r");
+                String rtx = client.getResponse();
+                String text = "";
+                
+                while (!rtx.equals("/eof")) {
+                    text += rtx + "\n";
+                    rtx = client.getResponse();
+                }
+                
                 ssop.setText(text);
                 
-            } 
+            } catch (Exception err) {
+                
+            }
             
-            catch (FileNotFoundException ex) 
+            /*catch (FileNotFoundException ex) 
             {
                 Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             } 
@@ -150,7 +165,7 @@ public IndiaSOP(){
             catch (IOException ex) 
             {
                 Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
         
         //This function will save whatever data in the text area into the text
@@ -158,10 +173,13 @@ public IndiaSOP(){
         if(e.getSource() == save){
             try
             {
-                String save = ssop.getText();
-                pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopIndia.txt"));
-                pr.write(save);
-                pr.close();
+                String saveData = ssop.getText();
+                //pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopIndia.txt"));
+                //pr.write(save);
+                //pr.close();
+                
+                client.sendRequest(saveData);
+                client.sendRequest("/airport-isop-w");
             }
             catch (Exception ea) 
         {

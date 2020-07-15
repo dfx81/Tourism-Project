@@ -4,13 +4,13 @@ import java.io.*;
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import com.coderia.backend.Client;
 import com.coderia.frontend.Content;
 
 
-class Airport extends Content implements ActionListener  { 
+public class Airport extends Content implements ActionListener  { 
 
     // Components of the Form 
     private JLabel bcolor1;
@@ -25,101 +25,105 @@ class Airport extends Content implements ActionListener  {
     private JButton mal; 
     private JButton gene;
     
-    File gen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\GeneralSOP.txt");
-    BufferedReader br;
+    private Client client;
+    
+    //File gen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\GeneralSOP.txt");
+    //BufferedReader br;
     
     // constructor, to initialize the components 
     // with default values. 
     
     
-    public void BuildUI(Client client) 
+    public void buildUI(Client client) 
     {
         /*setTitle("SOP FOR AIRPORT"); 
         setBounds(300, 200, 900, 600); 
         setDefaultCloseOperation(EXIT_ON_CLOSE); 
         setResizable(false); */
+        
+        this.client = client;
 
-        c = getContentPane(); 
-        c.setLayout(null); 
+        //c = getContentPane(); 
+        setLayout(null); 
       
         //the wide pink border colour
         bcolor = new JLabel();
-        bcolor.setSize(900, 80); 
+        bcolor.setSize(480, 64); 
         bcolor.setLocation(0, 0);
         bcolor.setOpaque(true);
         bcolor.setBackground(new Color(255, 169, 195, 100));
-        c.add(bcolor);
+        add(bcolor);
       
         //the thin black border colour
         bcolor1 = new JLabel();
-        bcolor1.setSize(900, 3); 
-        bcolor1.setLocation(0, 80);
+        bcolor1.setSize(480, 2); 
+        bcolor1.setLocation(0, 64);
         bcolor1.setOpaque(true);
         bcolor1.setBackground(new Color(0, 0, 0));
-        c.add(bcolor1);
+        add(bcolor1);
       
         //the air shape graphic
         image = new JLabel();
         image.setIcon(new ImageIcon("airlines2.png"));
-        image.setSize(100, 80); 
-        image.setLocation(700, 5);
-        c.add(image);
+        image.setSize(53, 64); 
+        image.setLocation(373, 4);
+        add(image);
         validate();
       
         //the air shape graphic
         image2 = new JLabel();
         image2.setIcon(new ImageIcon("airlines3.png"));
-        image2.setSize(100, 80); 
-        image2.setLocation(100, 5);
-        c.add(image2);
+        image2.setSize(53, 64); 
+        image2.setLocation(53, 4);
+        add(image2);
         validate();
         
         //the colourful graphic
         image3 = new JLabel();
         image3.setIcon(new ImageIcon("Design.png"));
-        image3.setSize(900, 600); 
+        image3.setSize(480, 480); 
         image3.setLocation(0, 0);
-        c.add(image3);
+        add(image3);
         validate();
       
         //Text title in the front page
         title = new JLabel("SOP AIRPORT"); 
-        title.setFont(new Font("Arial", Font.PLAIN, 30));
-        title.setSize(300, 30); 
-        title.setLocation(355, 30); 
+        title.setFont(new Font("Arial", Font.PLAIN, 20));
+        title.setSize(160, 24); 
+        title.setLocation(189, 24); 
         title.setForeground(new Color(0, 0, 0));
-        c.add(title);
+        add(title);
 
         //Label of text in the front page
         inst = new JLabel("Choose Your Options"); 
-        inst.setFont(new Font("Arial", Font.PLAIN, 48)); 
-        inst.setSize(500, 100); 
-        inst.setLocation(230, 100); 
-        c.add(inst);
+        inst.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        inst.setSize(266, 80); 
+        inst.setLocation(122, 80); 
+        add(inst);
         
         //the india button
         ind = new JButton("India"); 
-        ind.setFont(new Font("Arial", Font.BOLD, 30)); 
-        ind.setSize(170, 35); 
-        ind.setLocation(180, 300); 
+        ind.setFont(new Font("Arial", Font.BOLD, 12)); 
+        ind.setSize(90, 28); 
+        ind.setLocation(96, 240); 
         ind.addActionListener(this); 
-        c.add(ind);
+        add(ind);
         
         //the malaysia button
         mal = new JButton("Malaysia"); 
-        mal.setFont(new Font("Arial", Font.BOLD, 30)); 
-        mal.setSize(170, 35); 
-        mal.setLocation(560, 300); 
+        mal.setFont(new Font("Arial", Font.BOLD, 12)); 
+        mal.setSize(90, 28); 
+        mal.setLocation(298, 240); 
         mal.addActionListener(this); 
-        c.add(mal);
+        add(mal);
         
         //the general button
         gene = new JButton("General"); 
-        gene.setFont(new Font("Arial", Font.BOLD, 30)); 
-        gene.setSize(170, 35); 
-        gene.setLocation(370, 400); 
+        gene.setFont(new Font("Arial", Font.BOLD, 12)); 
+        gene.setSize(90, 28); 
+        gene.setLocation(197, 320); 
         gene.addActionListener(this); 
-        c.add(gene);
+        add(gene);
 
         //setVisible(true);
     } 
@@ -132,18 +136,33 @@ class Airport extends Content implements ActionListener  {
         if(e.getSource() == gene){
             try 
             {
-                br = new BufferedReader(new FileReader(gen));
+                /*br = new BufferedReader(new FileReader(gen));
                 String rt = "";
                 String text = "";
                 while ((rt = br.readLine()) != null)
                 {
                     text += rt + "\n";
                 }
+                JOptionPane.showMessageDialog(this , text);*/
+                
+                client.sendRequest("/airport-sop-r");
+                String rt = client.getResponse();
+                String text = "";
+                
+                while (!rt.equals("/eof")) {
+                    text += rt + "\n";
+                    rt = client.getResponse();
+                }
+                
                 JOptionPane.showMessageDialog(this , text);
-
-            } 
+            } catch (Exception err) {
+                System.out.println(err);
+                err.printStackTrace();
+                System.exit(-1);
+            }
+            //} 
             
-            catch (FileNotFoundException ex) 
+            /*catch (FileNotFoundException ex) 
             {
                 Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             } 
@@ -151,18 +170,18 @@ class Airport extends Content implements ActionListener  {
             catch (IOException ex) 
             {
                 Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             
         }
         
         //opening India JFrame
         if (e.getSource() == ind)
-            new IndiaSOP();
+            new IndiaSOP(client);
        
         
         //opening Malaysia JFrame
         if (e.getSource() == mal) 
-            new MalaySOP();
+            new MalaySOP(client);
     } 
 } 
 
@@ -170,10 +189,7 @@ class Airport extends Content implements ActionListener  {
 class AirportGUI { 
 
    public static void main(String[] args) throws Exception , FileNotFoundException , IOException  { 
-       Airport f = new Airport(); 
-       f.setLocationRelativeTo(null);
-       Image icon = Toolkit.getDefaultToolkit().getImage("icon.png");  
-           f.setIconImage(icon);  
+       Airport f = new Airport();
    } 
 }
 

@@ -49,6 +49,21 @@ class RequestHandler {
             case "/airlines-r":
                 airlinesRead();
                 break;
+            case "/airport-sop-r":
+                airportRead(0);
+                break;
+            case "/airport-msop-r":
+                airportRead(1);
+                break;
+            case "/airport-msop-w":
+                airportWrite(1);
+                break;
+            case "/airport-isop-r":
+                airportRead(2);
+                break;
+            case "/airport-isop-w":
+                airportWrite(2);
+                break;
             default:
                 extras.add(req);
         }
@@ -60,9 +75,8 @@ class RequestHandler {
         try {
             PrintWriter pw = new PrintWriter(airlines);
             pw.write("");
-            for (String str : extras) {
-                pw.println(str);
-            }
+            
+            extras.forEach((str) -> pw.println(str)); // Lambda :-P
             
             extras.clear();
             pw.close();
@@ -100,6 +114,53 @@ class RequestHandler {
             }
             
             out.println("/eof");
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    private void airportRead(int target) {
+        File airport;
+        
+        try {
+            switch (target) {
+                case 0: airport = new File("./res/GeneralSOP.txt"); break;
+                case 1: airport = new File("./res/SopMalaysia.txt"); break;
+                case 2: airport = new File("./res/SopIndia.txt"); break;
+                default: throw new Exception("File not found");
+            }
+        
+            Scanner sc = new Scanner(airport);
+            
+            while (sc.hasNext()) {
+                out.println(sc.nextLine());
+            }
+            
+            out.println("/eof");
+            
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    private void airportWrite(int target) {
+        File airport;
+        
+        try {
+            switch (target) {
+                case 1: airport = new File("./res/SopMalaysia.txt"); break;
+                case 2: airport = new File("./res/SopIndia.txt"); break;
+                default: throw new Exception("File not found");
+            }
+        
+            PrintWriter pw = new PrintWriter(airport);
+            
+            pw.write("");
+            
+            extras.forEach((str) -> pw.println(str)); // lambda :-P
+            
+            extras.clear();
+            pw.close();
         } catch (Exception err) {
             err.printStackTrace();
         }

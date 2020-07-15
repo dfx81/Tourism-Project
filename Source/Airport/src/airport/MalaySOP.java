@@ -7,9 +7,9 @@ import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.coderia.backend.Client;
-import com.coderia.frontend.Content;
+//import com.coderia.frontend.Content;
 
-    class MalaySOP extends Content implements ActionListener {
+class MalaySOP extends JFrame implements ActionListener {
     private JLabel bcolor1;
     private JLabel bcolor;
     private JLabel image;
@@ -22,18 +22,20 @@ import com.coderia.frontend.Content;
     private JButton show;
     private JScrollPane pane;
     private JLabel inst;
+    private Client client;
     
-    File malgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopMalaysia.txt");
-    FileWriter wr;
-    PrintWriter pr;
-    BufferedReader br;
+    //File malgen = new File ("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopMalaysia.txt");
+    //FileWriter wr;
+    //PrintWriter pr;
+    //BufferedReader br;
     
-public MalaySOP(){
+public MalaySOP(Client client){
+    this.client = client;
     
-    /*setTitle("SOP FOR MALAYSIA"); 
+    setTitle("SOP FOR MALAYSIA"); 
     setBounds(300, 200, 900, 600); 
     setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
-    setResizable(false);*/
+    setResizable(false);
     
     d = getContentPane(); 
     d.setLayout(null);
@@ -118,8 +120,8 @@ public MalaySOP(){
     show.addActionListener(this); 
     d.add(show);
     
-    //setVisible(true);
-    //setLocationRelativeTo(null);
+    setVisible(true);
+    setLocationRelativeTo(null);
 
 }
     @Override
@@ -129,19 +131,32 @@ public MalaySOP(){
         if (e.getSource() == show){
         try 
             {
-                br = new BufferedReader(new FileReader(malgen));
+                //br = new BufferedReader(new FileReader(malgen));
                 String rtx = "";
                 String text = "";
-                while ((rtx = br.readLine()) != null)
+                /*while ((rtx = br.readLine()) != null)
                 {
                     text += rtx + "\n";
                     System.out.println(rtx);
+                }*/
+                
+                client.sendRequest("/airport-msop-r");
+                rtx = client.getResponse();
+                
+                while (!rtx.equals("/eof")) {
+                    text += rtx + "\n";
+                    rtx = client.getResponse();
                 }
+                
                 ssop.setText(text);
                 
-            } 
+            } catch (Exception err) {
+                System.out.println(err);
+                err.printStackTrace();
+                System.exit(-1);
+            }
             
-            catch (FileNotFoundException ex) 
+            /*catch (FileNotFoundException ex) 
             {
                 Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
             } 
@@ -149,7 +164,7 @@ public MalaySOP(){
             catch (IOException ex) 
             {
                 Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
         
         //This function will save whatever data in the text area into the text
@@ -158,13 +173,16 @@ public MalaySOP(){
             try
             {
                 String save = ssop.getText();
-                pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopMalaysia.txt"));
-                pr.write(save);
-                pr.close();
+                //pr = new PrintWriter (new File("C:\\Users\\thebestp9\\Desktop\\Tourism-Project\\Tourism-Project\\Airport\\src\\airport\\SopMalaysia.txt"));
+                //pr.write(save);
+                //pr.close();
+                
+                client.sendRequest(save);
+                client.sendRequest("/airport-msop-w");
             }
-            catch (Exception ea) 
+            catch (Exception err) 
         {
-            JOptionPane.showMessageDialog(null, e + "");
+            JOptionPane.showMessageDialog(null, err + "");
         }
         
         }
