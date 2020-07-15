@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.coderia.launcher;
+package com.coderia.airplane;
 
 /**
  *
@@ -14,7 +14,7 @@ public class SOPAirplane {
     
 
     
-    SOPAirplane(String nm, String temp, String ms, String ns, String ta) {
+    public SOPAirplane(String nm, String temp, String ms, String ns, String ta) {
         this.name = nm;
         this.temperature = temp;
         this.numberOfSeat = ns;
@@ -25,7 +25,7 @@ public class SOPAirplane {
         
     }
 
-    SOPAirplane(String nm, String[] temperature, String[] numberOfSeat, String[] typeOfAirplane, String[] mask) {
+    public SOPAirplane(String nm, String[] temperature, String[] numberOfSeat, String[] typeOfAirplane, String[] mask) {
         this.name=nm;
 
   

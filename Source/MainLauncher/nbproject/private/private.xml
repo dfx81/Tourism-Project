@@ -1,36 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-<<<<<<< HEAD
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-<<<<<<< HEAD
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/user/Desktop/Tourism/Tourism-Project/Tourism-Project/Source/MainLauncher/src/com/coderia/launcher/MainLauncher.java</file>
-            <file>file:/C:/Users/user/Desktop/Tourism/Tourism-Project/Tourism-Project/Source/MainLauncher/src/com/coderia/launcher/sop.java</file>
-=======
-            <file>file:/C:/Users/hp%20pc/Desktop/Tourism-Project/Source/MainLauncher/res/data.txt</file>
             <file>file:/C:/Users/hp%20pc/Desktop/Tourism-Project/Source/MainLauncher/src/com/coderia/launcher/MainLauncher.java</file>
->>>>>>> bb30a623774832618cc0de8bd029855f9f9895c1
-=======
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/com/coderia/launcher/MainLauncher.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/user/Desktop/Tourism/Tourism-Project/Source/MainLauncher/src/com/coderia/launcher/newSop.java</file>
-            <file>file:/C:/Users/user/Desktop/Tourism/Tourism-Project/Source/MainLauncher/src/com/coderia/launcher/SOPAirplane.java</file>
-            <file>file:/C:/Users/user/Desktop/Tourism/Tourism-Project/Source/MainLauncher/src/com/coderia/launcher/MainLauncher.java</file>
->>>>>>> 175ed6b720ed1a3e39bb5edfa5d4dbc250356a5d
         </group>
     </open-files>
-=======
->>>>>>> b35b6d09f5f78fc0062685ee0992f45bda1fcbbe
 </project-private>

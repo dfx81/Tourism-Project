@@ -64,6 +64,12 @@ class RequestHandler {
             case "/airport-isop-w":
                 airportWrite(2);
                 break;
+            case "/airplane-w":
+                airplaneWrite();
+                break;
+            case "/airplane-r":
+                airplaneRead();
+                break;
             default:
                 extras.add(req);
         }
@@ -114,6 +120,7 @@ class RequestHandler {
             }
             
             out.println("/eof");
+            sc.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -137,7 +144,7 @@ class RequestHandler {
             }
             
             out.println("/eof");
-            
+            sc.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -161,6 +168,40 @@ class RequestHandler {
             
             extras.clear();
             pw.close();
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+    
+    private void airplaneWrite() {
+        File airplane = new File("./res/passengerInfo.txt");
+        
+        try {
+        
+            PrintWriter pw = new PrintWriter(airplane);
+            
+            extras.forEach((str) -> pw.print(str)); // lambda :-P
+            
+            extras.clear();
+            pw.close();
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+    
+    private void airplaneRead() {
+        File airplane = new File("./res/passengerInfo.txt");
+        
+        try {
+        
+            Scanner sc = new Scanner(airplane);
+            
+            while (sc.hasNext()) {
+                out.println(sc.nextLine());
+            }
+            
+            out.println("/eof");
+            sc.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
