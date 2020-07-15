@@ -10,6 +10,7 @@ package com.coderia.launcher;
 
 // Imports
 import com.coderia.airlines.AirlineContent;
+import airport.Airport;
 import com.coderia.backend.Client;
 import com.coderia.frontend.Launcher;
 import com.coderia.frontend.Content;
@@ -25,7 +26,7 @@ public class MainLauncher {
         
         // List all of the Contents. For now, all of it are CreditContents
         Content[] topics = {
-            new CreditContent(),
+            new Airport(),
             new AirlineContent(),
             new CreditContent(),
             new CreditContent(),
@@ -48,3 +49,5 @@ public class MainLauncher {
         ui.buildUI();
     }
 }
+
+
