@@ -1,0 +1,16 @@
+EirAsia
+4 0 100 15 85 1.0 true
+Malinda Air
+3 0 90 15 75 1.5 true
+Gerudo Air
+3 1 90 15 75 1.0 true 0 3 50 25 10
+Tricolore Airline
+5 1 80 15 65 2.0 true 0 3 50 25 10
+Dodo Air
+3 0 75 15 60 2.0 true
+Katar Airlines
+2 1 80 15 65 1.0 false 0 3 50 25 10
+Bad Air
+1 0 150 20 130 1.5 false
+Awful Air
+2 1 100 20 80 0.5 true 0 4 40 20 15 5
