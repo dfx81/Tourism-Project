@@ -54,7 +54,8 @@ public class Client {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
         } catch (Exception err) {
-            // Todo: Handle exception properly
+            err.printStackTrace();
+            System.exit(-1);
         }
     }
     

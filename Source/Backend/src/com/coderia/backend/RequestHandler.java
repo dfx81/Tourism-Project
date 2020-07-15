@@ -8,16 +8,20 @@
  * Edit this class to suit whatever the project
  * needs.
  */
-
 package com.coderia.backend;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 class RequestHandler {
+
     private PrintWriter out;
     private BufferedReader in;
-    
+    private ArrayList<String> extras = new ArrayList<>();
+
     // Constructor
     // Get the inputstream and outputstream for responses.
     // Use the inputstream to read further input such as extra
@@ -27,7 +31,7 @@ class RequestHandler {
         this.in = in;
         this.out = out;
     }
-    
+
     // This method defines what to do for
     // each requests.
     // This method will be changed repeatedly
@@ -39,82 +43,126 @@ class RequestHandler {
     // method.
     public void respond(String req) {
         switch (req) {
-            case "/rock":
-                game(1);
+            case "/airlines-w":
+                airlinesWrite();
                 break;
-            case "/paper":
-                game(2);
+            case "/airlines-r":
+                airlinesRead();
                 break;
-            case "/scissor":
-                game(3);
+            case "/airport-sop-r":
+                airportRead(0);
+                break;
+            case "/airport-msop-r":
+                airportRead(1);
+                break;
+            case "/airport-msop-w":
+                airportWrite(1);
+                break;
+            case "/airport-isop-r":
+                airportRead(2);
+                break;
+            case "/airport-isop-w":
+                airportWrite(2);
                 break;
             default:
-                out.println("Try typing /rock, /paper, or /scissor");
+                extras.add(req);
         }
     }
-    
-    // Just a game of rock paper scissor.
-    // Nothing to see here...
-    private void game(int user) {
-        int bot = 1 + (int)(Math.random() * 3);
-        int result = 0;
-        
-        switch (user) {
-            case 1:
-                switch (bot) {
-                    case 1:
-                        result = 0;
-                        break;
-                    case 2:
-                        result = -1;
-                        break;
-                    case 3:
-                        result = 1;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2:
-                switch (bot) {
-                    case 1:
-                        result = 1;
-                        break;
-                    case 2:
-                        result = 0;
-                        break;
-                    case 3:
-                        result = -1;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 3:
-                switch (bot) {
-                    case 1:
-                        result = -1;
-                        break;
-                    case 2:
-                        result = 1;
-                        break;
-                    case 3:
-                        result = 0;
-                        break;
-                    default:
-                        break;
-                }
+
+    private void airlinesWrite() {
+        File airlines = new File("./res/data.txt");
+
+        try {
+            PrintWriter pw = new PrintWriter(airlines);
+            pw.write("");
+            
+            extras.forEach((str) -> pw.println(str)); // Lambda :-P
+            
+            extras.clear();
+            pw.close();
+        } catch (Exception err) {
+            err.printStackTrace();
         }
+    }
+
+    private void airlinesRead() {
+        File airlines = new File("./res/data.txt");
+
+        try {
+            Scanner sc = new Scanner(airlines);
+
+            while (sc.hasNext()) {
+                int type = 0;
+                out.println(sc.nextLine());
+                out.println(sc.nextInt());
+                type = sc.nextInt();
+                out.println(type);
+                out.println(sc.nextInt());
+                out.println(sc.nextInt());
+                out.println(sc.nextDouble());
+                out.println(sc.nextBoolean());
+                
+                if (type == 1) {
+                    out.println(sc.nextInt());
+                    int n = sc.nextInt();
+                    out.println(n);
+                    for (int i = 0; i != n; i++)
+                        out.println(sc.nextInt());
+                }
+                
+                sc.nextLine();
+            }
+            
+            out.println("/eof");
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    private void airportRead(int target) {
+        File airport;
         
-        switch (result) {
-            case -1:
-                out.println("You lost");
-                break;
-            case 0:
-                out.println("Tied");
-                break;
-            case 1:
-                out.println("You won");
+        try {
+            switch (target) {
+                case 0: airport = new File("./res/GeneralSOP.txt"); break;
+                case 1: airport = new File("./res/SopMalaysia.txt"); break;
+                case 2: airport = new File("./res/SopIndia.txt"); break;
+                default: throw new Exception("File not found");
+            }
+        
+            Scanner sc = new Scanner(airport);
+            
+            while (sc.hasNext()) {
+                out.println(sc.nextLine());
+            }
+            
+            out.println("/eof");
+            
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    private void airportWrite(int target) {
+        File airport;
+        
+        try {
+            switch (target) {
+                case 1: airport = new File("./res/SopMalaysia.txt"); break;
+                case 2: airport = new File("./res/SopIndia.txt"); break;
+                default: throw new Exception("File not found");
+            }
+        
+            PrintWriter pw = new PrintWriter(airport);
+            
+            pw.write("");
+            
+            extras.forEach((str) -> pw.println(str)); // lambda :-P
+            
+            extras.clear();
+            pw.close();
+        } catch (Exception err) {
+            err.printStackTrace();
         }
     }
 }

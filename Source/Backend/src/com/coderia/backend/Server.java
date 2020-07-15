@@ -74,7 +74,7 @@ public class Server implements Runnable {
             System.out.println("Shutting down server...");
             server.close();
         } catch (Exception err) {
-            // Todo: Handle exceptions properly
+            err.printStackTrace();
         }
         
         in.close();
@@ -98,5 +98,9 @@ public class Server implements Runnable {
                 }
             }
         }
+    }
+    
+    public static void main(String[] args) {
+        new Server(8080);
     }
 }
