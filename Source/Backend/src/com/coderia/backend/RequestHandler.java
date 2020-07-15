@@ -74,6 +74,12 @@ class RequestHandler {
             case "/airplane-r":
                 airplaneRead();
                 break;
+            case "/restaurant-r":
+                restaurantRead();
+                break;
+            case "/restaurant-w":
+                restaurantWrite();
+                break;
             default:
                 extras.add(req);
         }
@@ -222,6 +228,45 @@ class RequestHandler {
             }
 
             out.println("/eof");
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+    
+    private void restaurantRead() {
+        File restaurant = new File("./res/customerList.txt");
+
+        try {
+
+            Scanner sc = new Scanner(restaurant);
+
+            while (sc.hasNext()) {
+                out.println(sc.nextLine());
+            }
+
+            out.println("/eof");
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+    
+    private void restaurantWrite() {
+        File restaurant = new File("./res/customerList.txt");
+
+        try {
+
+            RandomAccessFile raf = new RandomAccessFile(restaurant, "rw");
+
+            extras.forEach((str) -> {
+                try {
+                    raf.writeBytes(str + System.lineSeparator());
+                } catch (Exception err) {
+                    err.printStackTrace();
+                }
+            }); // lambda :-P
+
+            extras.clear();
+            raf.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
