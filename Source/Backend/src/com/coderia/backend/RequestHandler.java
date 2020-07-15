@@ -12,9 +12,13 @@ package com.coderia.backend;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class RequestHandler {
 
@@ -81,9 +85,9 @@ class RequestHandler {
         try {
             PrintWriter pw = new PrintWriter(airlines);
             pw.write("");
-            
+
             extras.forEach((str) -> pw.println(str)); // Lambda :-P
-            
+
             extras.clear();
             pw.close();
         } catch (Exception err) {
@@ -107,20 +111,20 @@ class RequestHandler {
                 out.println(sc.nextInt());
                 out.println(sc.nextDouble());
                 out.println(sc.nextBoolean());
-                
+
                 if (type == 1) {
                     out.println(sc.nextInt());
                     int n = sc.nextInt();
                     out.println(n);
-                    for (int i = 0; i != n; i++)
+                    for (int i = 0; i != n; i++) {
                         out.println(sc.nextInt());
+                    }
                 }
-                
+
                 sc.nextLine();
             }
-            
+
             out.println("/eof");
-            sc.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -128,23 +132,29 @@ class RequestHandler {
 
     private void airportRead(int target) {
         File airport;
-        
+
         try {
             switch (target) {
-                case 0: airport = new File("./res/GeneralSOP.txt"); break;
-                case 1: airport = new File("./res/SopMalaysia.txt"); break;
-                case 2: airport = new File("./res/SopIndia.txt"); break;
-                default: throw new Exception("File not found");
+                case 0:
+                    airport = new File("./res/GeneralSOP.txt");
+                    break;
+                case 1:
+                    airport = new File("./res/SopMalaysia.txt");
+                    break;
+                case 2:
+                    airport = new File("./res/SopIndia.txt");
+                    break;
+                default:
+                    throw new Exception("File not found");
             }
-        
+
             Scanner sc = new Scanner(airport);
-            
+
             while (sc.hasNext()) {
                 out.println(sc.nextLine());
             }
-            
+
             out.println("/eof");
-            sc.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -152,56 +162,66 @@ class RequestHandler {
 
     private void airportWrite(int target) {
         File airport;
-        
+
         try {
             switch (target) {
-                case 1: airport = new File("./res/SopMalaysia.txt"); break;
-                case 2: airport = new File("./res/SopIndia.txt"); break;
-                default: throw new Exception("File not found");
+                case 1:
+                    airport = new File("./res/SopMalaysia.txt");
+                    break;
+                case 2:
+                    airport = new File("./res/SopIndia.txt");
+                    break;
+                default:
+                    throw new Exception("File not found");
             }
-        
+
             PrintWriter pw = new PrintWriter(airport);
-            
+
             pw.write("");
-            
+
             extras.forEach((str) -> pw.println(str)); // lambda :-P
-            
+
             extras.clear();
             pw.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
     }
-    
+
     private void airplaneWrite() {
         File airplane = new File("./res/passengerInfo.txt");
-        
+
         try {
-        
-            PrintWriter pw = new PrintWriter(airplane);
-            
-            extras.forEach((str) -> pw.print(str)); // lambda :-P
-            
+
+            RandomAccessFile raf = new RandomAccessFile(airplane, "rw");
+
+            extras.forEach((str) -> {
+                try {
+                    raf.writeBytes(str + System.lineSeparator());
+                } catch (Exception err) {
+                    err.printStackTrace();
+                }
+            }); // lambda :-P
+
             extras.clear();
-            pw.close();
+            raf.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
     }
-    
+
     private void airplaneRead() {
         File airplane = new File("./res/passengerInfo.txt");
-        
+
         try {
-        
+
             Scanner sc = new Scanner(airplane);
-            
+
             while (sc.hasNext()) {
                 out.println(sc.nextLine());
             }
-            
+
             out.println("/eof");
-            sc.close();
         } catch (Exception err) {
             err.printStackTrace();
         }

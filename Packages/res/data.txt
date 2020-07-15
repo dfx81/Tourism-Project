@@ -10,8 +10,4 @@ Dodo Air
 3 0 15 60 2.0 true 
 Katar Airlines
 2 1 15 50 1.0 false 0 3 50 25 10 
-Bad Air
-1 0 20 130 1.5 false 
-Awful Air
-2 1 20 40 0.5 true 0 4 40 20 15 5 
 

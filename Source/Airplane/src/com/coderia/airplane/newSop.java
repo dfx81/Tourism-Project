@@ -389,13 +389,14 @@ public class newSop extends Content {
 
             }
         });
-
+        
         b12.addActionListener(new ActionListener() {
             @Override
 
             public void actionPerformed(ActionEvent ae) {
                 int respone = JOptionPane.showConfirmDialog(null, "Please make sure you have UPDATED each row of the information to get the ACURRATE FORMAT", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (respone == JOptionPane.YES_OPTION) {
+                    data = "";
                     for (int i = 0; i < SOPairplanelist.size(); i++) {
 
                         //creatFolder();
@@ -403,6 +404,10 @@ public class newSop extends Content {
                         countLines();
                         addData(SOPairplanelist.get(i).name, SOPairplanelist.get(i).temperature, SOPairplanelist.get(i).numberOfSeat, SOPairplanelist.get(i).typeOfAirplane, SOPairplanelist.get(i).mask);
                     }
+                    
+                    System.out.println(data);
+                    client.sendRequest(data);
+                    client.sendRequest("/airplane-w");
                 } else {
                     JOptionPane.showMessageDialog(null, "Please update now");
                 }
@@ -412,7 +417,7 @@ public class newSop extends Content {
     }
     //File f = new File("/Users/user/Desktop/passengerInfo.txt");
     int ln;
-    
+    String data = "";
     // What's the point of this?? We'll provide the data file so it'll
     // always exist in the project folder. There's no reason for this method
     // to exist.
@@ -440,7 +445,7 @@ public class newSop extends Content {
     }*/
 
     void addData(String name, String temperature, String numberOfSeat, String typeOfAirplane, String mask) {
-        try {
+        //try {
             /*RandomAccessFile raf = new RandomAccessFile(f + "\\passengerInfo.txt", "rw");
             for (int i = 0; i < ln; i++) {
                 raf.readLine();
@@ -457,21 +462,25 @@ public class newSop extends Content {
             
             // DISCLAIMER - I (Danial) just used the logic prepared by the codeowner.
             // If it's faulty I can't do anything since I don't know the true intentions
-            // of the code. All I can do is to recreate the resulted behaviour.
+            // of the code. All I can do is to move the data handling to the server.
+            client.sendRequest("/airplane-r");
             
-            // From the code behaviour: it will append new data to file. So that's
-            // what I'll recreate.
+            for (int i = 0; i < ln; i++) {
+                client.getResponse();
+            }
             
-            if (ln > 0) client.sendRequest("\n\n");
-            client.sendRequest("Name:" + name + "\n");
-            client.sendRequest("Temperature:" + temperature + "\n");
-            client.sendRequest("Number of seat:" + numberOfSeat + "\n");
-            client.sendRequest("Type of airplane:" + typeOfAirplane + "\n");
-            client.sendRequest("Mask:" + mask + "\n");
-            client.sendRequest("/airplane-w");
-        } catch (Exception err) {
-            err.printStackTrace();
-        }
+            client.getResponse(); // remove "/eof"
+            
+            if (ln > 0) {
+                data += "\n";
+                data += "\n";
+            }
+            
+            data += "Name:" + name + "\n";
+            data += "Temperature:" + temperature + "\n";
+            data += "Number of seat:" + numberOfSeat + "\n";
+            data += "Type of airplane:" + typeOfAirplane + "\n";
+            data += "Mask:" + mask + "\n";
         /*} catch (FileNotFoundException ex) {
             Logger.getLogger(newSop.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -487,7 +496,10 @@ public class newSop extends Content {
             
             String res = client.getResponse();
             
-            while (!res.equals("/eof")) ln++;
+            while (!res.equals("/eof")) {
+                ln++;
+                res = client.getResponse();
+            }
             /*RandomAccessFile raf = new RandomAccessFile(f + "\\passengerInfo.txt", "rw");
             for (int i = 0; raf.readLine() != null; i++) {
                 ln++;
