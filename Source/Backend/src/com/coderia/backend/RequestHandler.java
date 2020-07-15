@@ -8,16 +8,20 @@
  * Edit this class to suit whatever the project
  * needs.
  */
-
 package com.coderia.backend;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 class RequestHandler {
+
     private PrintWriter out;
     private BufferedReader in;
-    
+    private ArrayList<String> extras = new ArrayList<>();
+
     // Constructor
     // Get the inputstream and outputstream for responses.
     // Use the inputstream to read further input such as extra
@@ -27,7 +31,7 @@ class RequestHandler {
         this.in = in;
         this.out = out;
     }
-    
+
     // This method defines what to do for
     // each requests.
     // This method will be changed repeatedly
@@ -39,82 +43,65 @@ class RequestHandler {
     // method.
     public void respond(String req) {
         switch (req) {
-            case "/rock":
-                game(1);
+            case "/airlines-w":
+                airlinesWrite();
                 break;
-            case "/paper":
-                game(2);
-                break;
-            case "/scissor":
-                game(3);
+            case "/airlines-r":
+                airlinesRead();
                 break;
             default:
-                out.println("Try typing /rock, /paper, or /scissor");
+                extras.add(req);
         }
     }
-    
-    // Just a game of rock paper scissor.
-    // Nothing to see here...
-    private void game(int user) {
-        int bot = 1 + (int)(Math.random() * 3);
-        int result = 0;
-        
-        switch (user) {
-            case 1:
-                switch (bot) {
-                    case 1:
-                        result = 0;
-                        break;
-                    case 2:
-                        result = -1;
-                        break;
-                    case 3:
-                        result = 1;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2:
-                switch (bot) {
-                    case 1:
-                        result = 1;
-                        break;
-                    case 2:
-                        result = 0;
-                        break;
-                    case 3:
-                        result = -1;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 3:
-                switch (bot) {
-                    case 1:
-                        result = -1;
-                        break;
-                    case 2:
-                        result = 1;
-                        break;
-                    case 3:
-                        result = 0;
-                        break;
-                    default:
-                        break;
-                }
+
+    private void airlinesWrite() {
+        File airlines = new File("./res/data.txt");
+
+        try {
+            PrintWriter pw = new PrintWriter(airlines);
+            pw.write("");
+            for (String str : extras) {
+                pw.println(str);
+            }
+            
+            extras.clear();
+            pw.close();
+        } catch (Exception err) {
+            err.printStackTrace();
         }
-        
-        switch (result) {
-            case -1:
-                out.println("You lost");
-                break;
-            case 0:
-                out.println("Tied");
-                break;
-            case 1:
-                out.println("You won");
+    }
+
+    private void airlinesRead() {
+        File airlines = new File("./res/data.txt");
+
+        try {
+            Scanner sc = new Scanner(airlines);
+
+            while (sc.hasNext()) {
+                int type = 0;
+                out.println(sc.nextLine());
+                out.println(sc.nextInt());
+                type = sc.nextInt();
+                out.println(type);
+                out.println(sc.nextInt());
+                out.println(sc.nextInt());
+                out.println(sc.nextDouble());
+                out.println(sc.nextBoolean());
+                
+                if (type == 1) {
+                    out.println(sc.nextInt());
+                    int n = sc.nextInt();
+                    out.println(n);
+                    for (int i = 0; i != n; i++)
+                        out.println(sc.nextInt());
+                }
+                
+                sc.nextLine();
+            }
+            
+            out.println("/eof");
+        } catch (Exception err) {
+            err.printStackTrace();
         }
     }
 }

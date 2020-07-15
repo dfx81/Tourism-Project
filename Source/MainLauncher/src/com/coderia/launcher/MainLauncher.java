@@ -20,7 +20,8 @@ public class MainLauncher {
     public static void main(String[] args) {
         // For now, don't connect to anything (server is offline :-P)
         // Feel free to connect to localhost if you want
-        Client client = null;
+        
+        Client client = new Client("127.0.0.1", 8080);
         
         // List all of the Contents. For now, all of it are CreditContents
         Content[] topics = {
