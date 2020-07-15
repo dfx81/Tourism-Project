@@ -11,7 +11,7 @@ package com.coderia.launcher;
 // Imports
 import com.coderia.airlines.AirlineContent;
 import airport.Airport;
-import com.coderia.airplane.sop;
+import com.coderia.airplane.newSop;
 import com.coderia.backend.Client;
 import com.coderia.frontend.Launcher;
 import com.coderia.frontend.Content;
@@ -29,7 +29,7 @@ public class MainLauncher {
         Content[] topics = {
             new Airport(),
             new AirlineContent(),
-            new sop(),
+            new newSop(),
             new CreditContent(),
             new CreditContent(),
             new CreditContent()
