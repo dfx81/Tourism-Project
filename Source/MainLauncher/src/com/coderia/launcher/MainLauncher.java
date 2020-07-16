@@ -8,6 +8,11 @@ import com.coderia.backend.Client;
 import com.coderia.frontend.Launcher;
 import com.coderia.frontend.Content;
 import com.coderia.Restaurant.GroupProjectSOP;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 // Start of class
 public class MainLauncher {
@@ -16,7 +21,7 @@ public class MainLauncher {
         // For now, don't connect to anything (server is offline :-P)
         // Feel free to connect to localhost if you want
         
-        Client client = new Client("127.0.0.1", 8080);
+        //Client client = new Client("127.0.0.1", 8080);
         
         // List all of the Contents. For now, all of it are CreditContents
         Content[] topics = {
@@ -36,8 +41,29 @@ public class MainLauncher {
             "Credits"
         };
         
-        // Start the launcher
-        Launcher ui = new Launcher(topics, titles, client);
-        ui.buildUI();
+        
+        File config = new File("config.txt");
+        
+        try {
+            Scanner sc = new Scanner(config);
+            String ip = sc.nextLine();
+            int port = sc.nextInt();
+            sc.close();
+            
+            Client client = new Client(ip, port);
+            if (client.connect() == -1)
+                throw new IOException("PC or Server is Offline, retry later");
+            
+            // Start the launcher
+            Launcher ui = new Launcher(topics, titles, client);
+            ui.buildUI();
+        } catch (FileNotFoundException err) {
+            JOptionPane.showMessageDialog(null, "Configuration can't be read : "
+            + err);
+            System.exit(-1);
+        } catch (IOException err) {
+            JOptionPane.showMessageDialog(null, err);
+            System.exit(-1);
+        }
     }
 }

@@ -17,6 +17,7 @@ package com.coderia.backend;
 import java.net.Socket;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Client {
@@ -26,6 +27,9 @@ public class Client {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
+    
+    private String ip;
+    private int port;
     
     // Basic constructor. If this constructor
     // was used, must call
@@ -38,13 +42,14 @@ public class Client {
     // It automatically call connect() to
     // establish connection immediately
     public Client(String ip, int port) {
-        connect(ip, port);
+        this.ip = ip;
+        this.port = port;
     }
     
     // Use socket to connect to the server.
     // Note however the server must be running
     // or it will fail.
-    public void connect(String ip, int port) {
+    public int connect() {
         // Immediately get the InputStream and
         // OutputStream from the connection
         // to start sending requests and 
@@ -53,9 +58,10 @@ public class Client {
             socket = new Socket(ip, port);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
-        } catch (Exception err) {
-            err.printStackTrace();
-            System.exit(-1);
+            return 0;
+        } catch (IOException err) {
+            System.out.println(err);
+            return -1;
         }
     }
     
@@ -67,8 +73,8 @@ public class Client {
             in.close();
             out.close();
             socket.close();
-        } catch (Exception err) {
-            // Todo: Handle exception properly
+        } catch (IOException err) {
+            System.out.println(err);
         }
     }
     
@@ -76,11 +82,7 @@ public class Client {
     // server. Depending on the request, the
     // server might or might not handle it.
     public void sendRequest(String message) {
-        try {
-            out.println(message);
-        } catch (Exception err) {
-            // Todo: Handle exception properly
-        }
+        out.println(message);
     }
     
     // When request was sent and a response
@@ -91,8 +93,8 @@ public class Client {
         
         try {
             response = in.readLine();
-        } catch (Exception err) {
-            // Todo: Handle exception properly
+        } catch (IOException err) {
+            System.out.println(err);
         }
         
         return response;

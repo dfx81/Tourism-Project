@@ -2,7 +2,7 @@ package com.coderia.airlines;
 
 public class SOP {
     private int maxOnBoard = 100;
-    private int minDistance = 1;
+    private double minDistance = 1;
 
     public int getMaxOnBoard() {
         return maxOnBoard;
@@ -12,11 +12,11 @@ public class SOP {
         this.maxOnBoard = maxOnBoard;
     }
 
-    public int getMinDistance() {
+    public double getMinDistance() {
         return minDistance;
     }
 
-    public void setMinDistance(int minDistance) {
+    public void setMinDistance(double minDistance) {
         this.minDistance = minDistance;
     }
     
