@@ -16,6 +16,7 @@ package com.coderia.frontend;
 
 // Imports
 import com.coderia.backend.Client;
+import com.coderia.hotel.HotelForm;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -154,8 +155,12 @@ public class Launcher{
             content.setViewportView(topics[3]);
         });
         buttons[4].addActionListener((ActionEvent evt) -> {
-            // TODO: Launch Hotel's main method
-            //new HotelForm().main(null);
+            // Danial: The Netbeans form editor generated something
+            // in the constructor. So, I'm gonna initialize an instance
+            // and call the main method from there instead of just using
+            // HotelForm.main(null). It still works when I called it statically,
+            // but I have no idea what bugs might happen so I'm not risking it.
+            new HotelForm().main(null);
         });
         buttons[5].addActionListener((ActionEvent evt) -> {
             content.setViewportView(topics[5]);
