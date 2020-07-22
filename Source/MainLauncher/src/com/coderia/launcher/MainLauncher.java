@@ -29,6 +29,7 @@ public class MainLauncher {
             new AirlineContent(),
             new newSop(),
             new GroupProjectSOP(),
+            null,
             new CreditContent()
         };
         
@@ -38,6 +39,7 @@ public class MainLauncher {
             "Airlines",
             "Airplane",
             "Restaurant",
+            "Hotel",
             "Credits"
         };
         

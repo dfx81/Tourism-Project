@@ -36,9 +36,7 @@ public class CreditContent extends Content {
                 + "- Backend Programming -<br/>"
                 + "Danial Fitri<br/><br/>"
                 + "- Frontend Programming -<br/>"
-                + "Danial Fitri<br/><br/>"
-                + "<sub>Disclaimer: Gokul's Hotel topic removed from this "
-                + "version due to some issues</sub></p></html>");
+                + "Danial Fitri</p></html>");
         
         // Set the Content layout to Borderlayout
         this.setLayout(new BorderLayout());

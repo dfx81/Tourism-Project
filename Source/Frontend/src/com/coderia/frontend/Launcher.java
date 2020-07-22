@@ -49,7 +49,7 @@ public class Launcher{
         frame = new JFrame("Coderia - Tour Guide");
         nav = new JPanel();
         content = new JScrollPane();
-        buttons = new JButton[5];
+        buttons = new JButton[6];
         this.topics = topics;
         this.titles = titles;
     }
@@ -98,12 +98,13 @@ public class Launcher{
         // Get all of the Content list and start initializing each of
         // their UIs
         for (Content topic : topics) {
-            topic.buildUI(client);
+            if (topic != null)
+                topic.buildUI(client);
         }
         
         // Set default content to the credit section :-P
         //content.setViewportView(topics[5]);
-        content.setViewportView(topics[4]); // Hotel removed :'(
+        content.setViewportView(topics[5]); // Hotel readded
         
         // - Navigation -
         
@@ -153,10 +154,11 @@ public class Launcher{
             content.setViewportView(topics[3]);
         });
         buttons[4].addActionListener((ActionEvent evt) -> {
-            content.setViewportView(topics[4]);
+            // TODO: Launch Hotel's main method
+            //new HotelForm().main(null);
         });
-        /*buttons[5].addActionListener((ActionEvent evt) -> {
+        buttons[5].addActionListener((ActionEvent evt) -> {
             content.setViewportView(topics[5]);
-        });*/
+        });
     }
 }

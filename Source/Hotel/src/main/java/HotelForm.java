@@ -110,12 +110,8 @@ public class HotelForm extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField3);
         jTextField3.setBounds(180, 250, 177, 26);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\GUIHOTEL\\Img\\Hotel_icon.png")); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(170, 0, 140, 140);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\GUIHOTEL\\Img\\images-white.png")); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(210, 130, 280, 220);
 
@@ -132,16 +128,10 @@ public class HotelForm extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(19, 292, 76, 32);
-
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\GUIHOTEL\\Img\\images-white.png")); // NOI18N
         getContentPane().add(jLabel10);
         jLabel10.setBounds(210, -10, 280, 220);
-
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\GUIHOTEL\\Img\\images-white.png")); // NOI18N
         getContentPane().add(jLabel11);
         jLabel11.setBounds(0, -10, 280, 220);
-
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\GUIHOTEL\\Img\\images-white.png")); // NOI18N
         getContentPane().add(jLabel12);
         jLabel12.setBounds(0, 130, 280, 220);
 
