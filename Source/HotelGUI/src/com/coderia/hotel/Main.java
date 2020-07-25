@@ -11,10 +11,13 @@ package com.coderia.hotel;
  * @author User
  */
 public class Main{   
+    
+    
    
     public static void main(String[]args){
      HotelForm form = new HotelForm();
      form.setVisible(true);
+     
    
 }
 }
