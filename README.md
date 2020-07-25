@@ -3,8 +3,7 @@ Project for STIA1123A (Programming 2) course
 
 ## How to use?
 
-Latest Release : V0.2-alpha  
-[Download Link](https://github.com/dfx81/Tourism-Project/releases)
+Latest Release : V0.2-alpha [[Download Link]](https://github.com/dfx81/Tourism-Project/releases)
 
 Users: Extract the Tour Guide folder and run
 the Main Launcher.  
